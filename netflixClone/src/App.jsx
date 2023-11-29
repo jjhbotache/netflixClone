@@ -1,10 +1,12 @@
+import Product from "./components/Product/Product"
 
 function App() {
 
 
   return (
     <>
-      <h1>React App</h1>
+      <h1>Simple buy</h1>
+      <Product />
     </>
   )
 }
