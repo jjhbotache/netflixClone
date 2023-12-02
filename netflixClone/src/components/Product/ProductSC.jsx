@@ -3,7 +3,9 @@ import { darkBg, lightBg, radious } from '../../constants/styleConstants';
 
 export const Wrapper = styled.div`
     width: fit-content;
+    min-width: 250px;
     display: grid;
+    justify-content: center;
     background: ${darkBg};
     color: ${lightBg};
     padding: 1em;
@@ -49,6 +51,13 @@ export const Wrapper = styled.div`
             color: ${lightBg};
             border: 1px solid ${lightBg};
         }
+    }
+
+    & > form{
+        min-height: 50px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
 `;
 
