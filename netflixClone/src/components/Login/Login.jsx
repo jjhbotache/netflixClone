@@ -8,6 +8,7 @@ export default function Login() {
   return(
     <div>
       <h1>Login</h1>
+      <br />
       <GoogleOAuthProvider clientId={client_id}>
 
       <GoogleLogin
@@ -19,7 +20,7 @@ export default function Login() {
         onError={() => {
           console.log('Login Failed');
         }}
-      />;
+      />
       </GoogleOAuthProvider>
     </div>
   )

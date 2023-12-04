@@ -66,8 +66,8 @@ export default function Todo() {
       <ul>
         {items.map((i) => (
           <li key={i.id} className="my-1">
-            <div className="container btn-group" role="group" aria-label="Button group name" style={{width:200}}>
-              <button type="button" className="col btn btn-outline-primary">{i.name}</button>
+            <div className="container btn-group" role="group" aria-label="Button group name" style={{width:"100%",maxWidth:450}}>
+              <button type="button" className="col btn btn-outline-primary disabled">{i.name}</button>
               <button onClick={e=>modifyRegister(i.id)} type="button" className="col-1 btn btn-warning">🖊️</button>
               <button onClick={e=>deleteRegister(i.id)} type="button" className="col-1 btn btn-danger">✖️</button>
             </div>

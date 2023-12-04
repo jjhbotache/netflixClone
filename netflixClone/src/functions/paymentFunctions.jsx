@@ -62,7 +62,7 @@ const createOrder = async () => {
         },
       ],
       application_context: {
-        brand_name: "Example Inc",
+        brand_name: "React Test Store",
         landing_page: "NO_PREFERENCE",
         user_action: "PAY_NOW",
         return_url: "http://localhost:5173",
