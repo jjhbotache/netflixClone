@@ -1,0 +1,1 @@
+export const redNetflixColor = '#e50914';

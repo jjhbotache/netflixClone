@@ -1,19 +1,14 @@
-import App from "./App";
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import GlobalStyle from "./assets/globalStyles";
+import App from './App.jsx'
+import GlobalStyle from './globalStyles.jsx';
+import detailsCloser from './functions/simpleHelpers/detailsCloser.jsx';
 
-import { Provider } from "react-redux";
-import store from "./redux/store.jsx";
+document.addEventListener('click', detailsCloser);
 
-
-
-  
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <GlobalStyle />
-      <App />
-    </Provider>
+    <App />
+    <GlobalStyle />
   </React.StrictMode>,
 )
