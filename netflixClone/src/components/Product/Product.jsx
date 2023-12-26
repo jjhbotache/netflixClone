@@ -13,6 +13,10 @@ const Product = () => {
     };
   }, []);
 
+
+  const suscribeToCurse = () => {
+    console.log('suscribeToCurse');
+  }
   return (
     <Wrapper>
       <h1>Robot</h1>
@@ -22,8 +26,10 @@ const Product = () => {
       </h2>
       <img src="https://th.bing.com/th/id/OIP.Nacv3vBOZ5n713Zc9isSTwAAAA?rs=1&pid=ImgDetMain" alt="Robot image" />
       <button onClick={buyBot}>Comprar</button>
-    </Wrapper>
+      <a href='https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UPN8K77B6J6B4'>subscribe to the 6 days curse</a>
+    </Wrapper >  
   );
 };
 
 export default Product;
+

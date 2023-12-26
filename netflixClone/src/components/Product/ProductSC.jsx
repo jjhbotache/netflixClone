@@ -36,6 +36,7 @@ export const Wrapper = styled.div`
     & > button{
         display: block;
         width: 100%;
+        max-width: 200px;
         background: ${lightBg};
         color: ${darkBg};
         padding: 0.5em;
@@ -46,7 +47,7 @@ export const Wrapper = styled.div`
         border: 1px solid ${darkBg};
         font-weight:900;
         &:hover{
-            letter-spacing: 5px;
+            letter-spacing: 3px;
             background: transparent;
             color: ${lightBg};
             border: 1px solid ${lightBg};

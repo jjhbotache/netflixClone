@@ -2,8 +2,8 @@ const base = "https://api-m.sandbox.paypal.com";
 const getTokenFromCookie = () => {
   const cookie = document.cookie
     .split(";")
-    .find((cookie) => cookie.startsWith("accessToken"));
-  if (!cookie) return null;
+    .find((cookie) => cookie.includes("paypalTokenToBuy"));
+    console.log("using cookie", cookie);
   return cookie.split("=")[1];
 };
 
@@ -11,10 +11,12 @@ export async function buyBot() {
   console.log("buyBot");
   const accessToken = await generateAccessToken();
   // save the token in a cookie
-  document.cookie = `accessToken=${accessToken}`;
+  document.cookie = `paypalTokenToBuy=${accessToken}`;
   const order = await createOrder(accessToken);
   // open a new window with the PayPal payment URL
-  window.open(order.links.find((link) => link.rel === "approve").href);
+  const link = order.links.find((link) => link.rel === "approve").href;
+  console.log("link", link);
+  window.location.assign(link);
 }
 
 const generateAccessToken = async () => {
@@ -89,3 +91,4 @@ export const captureOrder = async (token) => {
   window.location.href = "/";
   return order;
 };
+
