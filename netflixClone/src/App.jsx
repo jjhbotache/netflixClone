@@ -4,6 +4,7 @@ import Nav from "./components/Nav/Nav"
 import seriesBackground from "./assets/PNG/bg_series.jpg";
 import Ribbon from "./components/Ribbon/Ribbon";
 import PlansSection from "./components/PlansSection/PlansSection";
+import TrendingSection from "./components/TrendingSection/TrendingSection";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <FirstSection />
         <Ribbon/>
         <PlansSection/>
+        <TrendingSection/>
       </StyledFirstSection>
     </>
   )

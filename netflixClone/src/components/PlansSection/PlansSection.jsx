@@ -15,7 +15,7 @@ export default function PlansSection() {
 
   const StyledPlanArticle = styled.article`
     background: linear-gradient(180deg, #6c1f41 0%, #210d0e 100%);
-    padding: 2rem 1rem;
+    padding: 1.5rem 1rem;
     border-radius: 1rem;
     &>h3 {
       font-size: 1.5rem;
