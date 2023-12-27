@@ -1,18 +1,17 @@
 import styled from "styled-components";
-import { redNetflixColor } from "../consts/styleConsts";
+import { redNetflixColor } from "../../consts/styleConsts";
 
 export const StyledNav = styled.nav`
-  height: 5rem;
+  height: 4rem;
   padding: 1rem 2rem;
-
-
+  background: linear-gradient(to bottom, black, transparent);
   & ul {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
     height: 100%;
-    max-width: 1104px;
+    @media screen and (width > 1272px) {max-width: 1104px;}
     margin: 0 auto;
   }
   & div {
@@ -52,7 +51,8 @@ export const StyledNavLoginButton = styled.button`
 export const StyledNavLanguajeSelect = styled.details`
   ${commonButtonStyles}
 
-  background-color: rgba(22, 163, 133, 0.7);
+  background-color: rgba(22, 22, 22, 0.7);
+  border: gray .5px solid;
   color: white;
   cursor: pointer;
   /* ---------------- summary styles ---------------- */
