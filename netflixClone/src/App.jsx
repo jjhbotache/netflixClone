@@ -7,6 +7,9 @@ import PlansSection from "./components/PlansSection/PlansSection";
 import TrendingSection from "./components/TrendingSection/TrendingSection";
 import GamesSection from "./components/GamesSection/GamesSection";
 import MoreReazonsSection from "./components/MoreReazonsSection/MoreReazonsSection";
+import QuestionsSection from "./components/QuestionsSection/QuestionsSection";
+import JoinWithEmailSection from "./components/JoinWithEmailSection/JoinWithEmailSection";
+import Footer from "./components/Footer/Footer";
 
 
 function App() {
@@ -22,6 +25,9 @@ function App() {
         <TrendingSection/>
         <GamesSection/>
         <MoreReazonsSection/>
+        <QuestionsSection/>
+        <JoinWithEmailSection/>
+        <Footer/>
       </StyledFirstSection>
     </>
   )
