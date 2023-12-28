@@ -6,6 +6,7 @@ import Ribbon from "./components/Ribbon/Ribbon";
 import PlansSection from "./components/PlansSection/PlansSection";
 import TrendingSection from "./components/TrendingSection/TrendingSection";
 import GamesSection from "./components/GamesSection/GamesSection";
+import MoreReazonsSection from "./components/MoreReazonsSection/MoreReazonsSection";
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
         <PlansSection/>
         <TrendingSection/>
         <GamesSection/>
-        
+        <MoreReazonsSection/>
       </StyledFirstSection>
     </>
   )
