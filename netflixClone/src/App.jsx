@@ -5,6 +5,7 @@ import seriesBackground from "./assets/PNG/bg_series.jpg";
 import Ribbon from "./components/Ribbon/Ribbon";
 import PlansSection from "./components/PlansSection/PlansSection";
 import TrendingSection from "./components/TrendingSection/TrendingSection";
+import GamesSection from "./components/GamesSection/GamesSection";
 
 
 function App() {
@@ -18,6 +19,8 @@ function App() {
         <Ribbon/>
         <PlansSection/>
         <TrendingSection/>
+        <GamesSection/>
+        
       </StyledFirstSection>
     </>
   )
