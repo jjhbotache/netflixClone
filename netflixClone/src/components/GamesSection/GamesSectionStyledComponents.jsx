@@ -1,35 +1,38 @@
 import styled from "styled-components";
+import { bigScreenWidthInPx } from "../../consts/styleConsts";
 
 export const StyledGamesSection = styled.section`
   box-sizing: border-box;
   width: 100%;
-  height: 100%;
   color: #fff;
   padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+
+  &>h3{
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
 
   &>div{
     box-sizing: border-box;
     background: linear-gradient(97deg, #45172B 1.27%, #120C1F 75.23%);
+    width: 100%;
     padding: 1.5rem;
     padding-bottom: 0rem;
     border-radius: 1rem;
     overflow: hidden;  
     
-    &>h3{
+    & h3{
       font-size: 1.5rem;
       font-weight: 500;
     }
-    &>p{
+    & p{
       font-size: 1rem;
       font-weight: 400;
       color: rgba(255, 255, 255,.7);
       margin: .5rem 0;
     }
-    &>div:last-child{
+    & div:last-child{
       box-sizing: border-box;
       position: relative;
       width: 16rem;
@@ -55,5 +58,26 @@ export const StyledGamesSection = styled.section`
         background-repeat: no-repeat;
       }
     }
+  }
+
+  @media all and (width > ${bigScreenWidthInPx + "px"}) {
+    padding: 0 5rem;
+    &>div{
+      height: 213px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      & div:first-child{
+
+      }
+      & div:last-child{
+        width: 100%;
+        &::after{
+          width: 352px;
+          transform: translate(15%,5%);
+        }
+      }
+    }
+    
   }
 `;

@@ -1,10 +1,16 @@
 import styled from "styled-components";
+import { bigScreenWidthInPx } from "../../consts/styleConsts";
 
 export const FirstSectionContainer = styled.section`
   display: flex;
-  padding: 0 2rem;
+  
+  
   height: 73vh;
   align-items: end;
+
+
+  padding: 0 2rem;
+  
   &>div {
     margin: 0 auto 0 0;
     max-width: 27rem;
@@ -65,6 +71,19 @@ export const FirstSectionContainer = styled.section`
         }
       }
     }
+  }
+
+  @media all and (width > ${bigScreenWidthInPx + "px"}) {
+    padding: 0 5rem; 
+    &>div {
+      padding-bottom: 1rem;
+      &>h1{
+        font-size: 2.5rem;
+      }
+      &>p{
+        margin-bottom: 3rem;
+      }
+    }  
   }
 
 

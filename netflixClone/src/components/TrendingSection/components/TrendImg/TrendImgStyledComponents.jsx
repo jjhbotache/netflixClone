@@ -1,9 +1,8 @@
 import styled from "styled-components";
+import { bigScreenWidthInPx } from "../../../../consts/styleConsts";
 
 export const TrendImgContainer = styled.div`
-  width: 7rem;
-  min-width: 7rem;
-  height: auto;
+  box-sizing: content-box;
   position: relative;
   
   margin: .5rem;
@@ -17,9 +16,7 @@ export const TrendImgContainer = styled.div`
 
   &>img {
     border-radius: .5rem;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 7rem;
   }
   &>span{
     position: absolute;
@@ -32,5 +29,11 @@ export const TrendImgContainer = styled.div`
     padding: .2rem .5rem;
     text-shadow: .15rem .15rem 0px white;
     -webkit-text-stroke: .1rem white;
+  }
+
+  @media all and (width>${bigScreenWidthInPx + "px"}) {
+    &>img{
+      width: 8.75rem;
+    }
   }
 `;

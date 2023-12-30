@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { bigScreenWidthInPx } from "../../consts/styleConsts";
 
 export const StyledMoreReazonsSection = styled.section`
-box-sizing: border-box;
+  box-sizing: border-box;
   background-color: #000;
   color: white;
   padding: 0 2rem;
@@ -22,6 +23,7 @@ box-sizing: border-box;
     &>li{
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       padding: 1rem;
       gap: .2rem;
       background-image: linear-gradient(149deg, rgb(25, 34, 71) 0%, rgb(33, 14, 23) 96.86%);
@@ -36,6 +38,23 @@ box-sizing: border-box;
       &>h3{
         font-size: 1.25rem;
         font-weight: 500;
+      }
+    }
+  }
+
+  @media all and (width > ${bigScreenWidthInPx + "px"}) {
+    padding: 0 5rem;
+    &>h2{
+      font-size: 1.5rem;
+    }
+    &>ul{
+      display: flex;
+      flex-direction: row;
+      &>li{
+        box-sizing: border-box;
+
+        height: 192px;
+        width: 100%;
       }
     }
   }

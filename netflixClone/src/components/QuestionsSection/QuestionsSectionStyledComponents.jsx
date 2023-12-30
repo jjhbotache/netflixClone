@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { bigScreenWidthInPx } from "../../consts/styleConsts";
 
 export const StyledQuestionsSection = styled.section`
   padding: 0 2rem;
@@ -43,5 +44,17 @@ export const StyledQuestionsSection = styled.section`
   &[open]>summary{
     margin-bottom: 1rem;
   }
+  }
+
+  @media all and (width > ${bigScreenWidthInPx + "px"}) {
+    padding: 0 5rem;
+    & > h2 {
+      font-size: 1.5rem;
+    }
+    & details{
+      padding: 1.5rem;
+      font-size: 1.5rem;
+      max-width: 54.8rem;
+    }
   }
 `;

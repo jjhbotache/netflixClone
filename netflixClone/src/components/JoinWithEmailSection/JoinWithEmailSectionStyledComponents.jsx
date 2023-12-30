@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { bigScreenWidthInPx } from "../../consts/styleConsts";
 
 export const StyledJoinWithEmailSection = styled.section`
   padding: 0 2rem;
@@ -6,13 +7,15 @@ export const StyledJoinWithEmailSection = styled.section`
   &>h3{
     font-size: 1rem;
     font-weight: 400;
+    color: rgba(255, 255, 255,.7);
   }
   &>form{
-      display: flex;
-      width: 100%;
-      height: 3.5rem;
-      gap: .5rem;
-      margin-top: 1rem; 
+    display: flex;
+    width: 100%;
+    height: 3.5rem;
+    gap: .5rem;
+    margin-top: 1rem; 
+    
       &>input[type="email"] {
         box-sizing: border-box;
         height: 100%;
@@ -51,5 +54,9 @@ export const StyledJoinWithEmailSection = styled.section`
           filter: invert(1);
         }
       }
-    }
+  }
+  @media all and (width > ${bigScreenWidthInPx + "px"}) {
+    padding: 0 5rem;
+    margin-top: 3rem;
+  }
 `;

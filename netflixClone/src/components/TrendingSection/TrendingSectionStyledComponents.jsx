@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { bigScreenWidthInPx } from "../../consts/styleConsts";
 
 export const StyledTrendingSection = styled.section`
   display: flex;
@@ -9,7 +10,10 @@ export const StyledTrendingSection = styled.section`
     font-size: 1.125rem;
     font-weight: 500;
   }
-
+  @media all and (width > ${bigScreenWidthInPx + "px"}) {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
   
 `;
 

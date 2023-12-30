@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { bigScreenWidthInPx } from "../../consts/styleConsts";
 
 export const StyledFooter = styled.footer`
   display: grid;
@@ -15,5 +16,12 @@ export const StyledFooter = styled.footer`
   }
   &>details{
     width: fit-content;
+  }
+  
+  @media all and (width > ${bigScreenWidthInPx + "px"}) {
+    padding: 0 5rem;
+    &>ul{
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 `;

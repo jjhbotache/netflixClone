@@ -5,7 +5,6 @@ export const TrendsSliderContainer = styled.div`
   align-items: center;
   & > div{
     width: 100%;
-    height: auto;
     overflow: hidden;
     overflow-x: scroll;
     display: flex;

@@ -4,29 +4,35 @@ import languajeImg from '../../assets/PNG/translate.png'
 import triangle from '../../assets/SVG/angle-right.svg'
 
 export default function Footer() {
+  const links = [
+    "FAQ",
+    "Help Center",
+    "Account",
+    "Media Center",
+    "Investor Relations",
+    "Jobs",
+    "Redeem Gift Cards",
+    "Buy Gift Cards",
+    "Ways to Watch",
+    "Terms of Use",
+    "Privacy",
+    "Cookie Preferences",
+    "Corporate Information",
+    "Contact Us",
+    "Speed Test",
+    "Legal Notices",
+    "Only on Netflix"
+  ];
+
   return (
     <StyledFooter>
       <span>
         Questions? Call <a href="#">01 800 917 1563</a>
       </span>
       <ul>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">Help Center</a></li>
-        <li><a href="#">Account</a></li>
-        <li><a href="#">Media Center</a></li>
-        <li><a href="#">Investor Relations</a></li>
-        <li><a href="#">Jobs</a></li>
-        <li><a href="#">Redeem Gift Cards</a></li>
-        <li><a href="#">Buy Gift Cards</a></li>
-        <li><a href="#">Ways to Watch</a></li>
-        <li><a href="#">Terms of Use</a></li>
-        <li><a href="#">Privacy</a></li>
-        <li><a href="#">Cookie Preferences</a></li>
-        <li><a href="#">Corporate Information</a></li>
-        <li><a href="#">Contact Us</a></li>
-        <li><a href="#">Speed Test</a></li>
-        <li><a href="#">Legal Notices</a></li>
-        <li><a href="#">Only on Netflix</a></li>
+        {links.map((link, index) => (
+          <li key={index}><a href="#">{link}</a></li>
+        ))}
       </ul>
       <StyledNavLanguajeSelect>
         <summary>
