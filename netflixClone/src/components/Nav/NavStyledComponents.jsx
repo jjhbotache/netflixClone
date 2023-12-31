@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { redNetflixColor } from "../../consts/styleConsts";
+import { Link } from "react-router-dom";
 
 export const StyledNav = styled.nav`
   height: 4rem;
@@ -33,11 +34,15 @@ const commonButtonStyles = `
   transition: all 0.2s ease-in-out;
 `;
 
-export const StyledNavLoginButton = styled.button`
+export const StyledNavLoginButton = styled(Link)`
   ${commonButtonStyles}
 
   background-color: ${redNetflixColor};
   color: white;
+
+  text-decoration: none;
+  display: grid;
+  place-items: center;
 
   margin-left: 12px;
   cursor: pointer;

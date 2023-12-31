@@ -5,26 +5,31 @@ export default function PlansSection() {
   const StyledPlanSection = styled.section`
 
     padding: 0 2rem;
+    h2 {
+      font-size: 1.125rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    
     &>div{
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       max-width: 120rem;
       gap: .5rem;
-      &>h2 {
-        font-size: 1.125rem;
-        font-weight: 500;
-        margin-bottom: 1rem;
-      }
     }
     @media all and (width>${bigScreenWidthInPx + "px"}) {
       padding: 0 5rem;
-      &>div{
-        gap: .75rem;
-      }
-      &>h2 {
+
+      h2 {
         font-weight: 500;
         font-size: 1.5rem;
         margin-bottom: 1rem;
+      }
+      &>div{
+        gap: .75rem;
+        flex-direction: row;
       }
       
     }

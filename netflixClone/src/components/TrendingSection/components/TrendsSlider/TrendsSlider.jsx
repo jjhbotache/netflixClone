@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import trendsArrays from "../../consts/trendsArrays";
 import TrendImg from "../TrendImg/TrendImg";
 import { TrendsSliderContainer } from "./TrendsSliderStyledComponents";
+import { bigScreenWidthInPx } from "../../../../consts/styleConsts";
 
 export default function TrendsSlider(chosenTrendsToWatch) {
   const trendsImgsToRender = chosenTrendsToWatch.chosenTrendsToWatch.country === "Colombia"
@@ -35,9 +36,14 @@ export default function TrendsSlider(chosenTrendsToWatch) {
   }
 
   function scrollSlider(direction) {
+    // get the width of the window in px
+    const windowWidthInPx = window.innerWidth;
     const remValueInPixels = parseFloat(getComputedStyle(document.documentElement).fontSize);
-    const trendImgWidthInRems = 7.2;
-    const amountOfTrendImgsVisible = 5;
+
+    const gapInRem = .5;
+    const trendImgWidthInRems = (windowWidthInPx > bigScreenWidthInPx ? 8.75 : 7) + gapInRem;
+
+    const amountOfTrendImgsVisible = Math.floor(windowWidthInPx / (trendImgWidthInRems * remValueInPixels));
 
     const pxToMove = ((remValueInPixels * trendImgWidthInRems) * amountOfTrendImgsVisible);
 

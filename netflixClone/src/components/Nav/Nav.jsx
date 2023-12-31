@@ -20,7 +20,7 @@ export default function Nav() {
             <li>Spanish</li>
           </ul>
         </StyledNavLanguajeSelect>
-        <StyledNavLoginButton>Sign in</StyledNavLoginButton>
+        <StyledNavLoginButton to={"/login"}>Sign in</StyledNavLoginButton>
       </div>
       </ul>
     </StyledNav>
