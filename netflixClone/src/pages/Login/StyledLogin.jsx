@@ -4,22 +4,24 @@ import styled from "styled-components"
 export const StyledLogin = styled.main`
 
   width: 100%;
-  height: 170vh;
+  height: auto;
   overflow: hidden;
   &>img:first-child{
+    opacity: .5;
+    position: relative;
+    z-index: -1;
+    
     height: inherit;
     object-fit: cover;
-    opacity: .5;
-  }
-  &>div{
-    background: #000;
   }
 `;
 
 export const StyledLogo = styled.img`
   position: absolute;
-  top: 1rem;
-  left: 2rem;
+  top: .5rem;
+  left: 1rem;
+  opacity: 1;
+  margin: 1rem 0 0 2rem;
   width: 167px;
   object-fit: contain;
 `;
@@ -27,9 +29,9 @@ export const StyledLogo = styled.img`
 export const StyledLoginSection = styled.section`
   box-sizing: border-box;
   position: absolute;
-  top: 50%;
+  top: 6rem;
   left: 50%;
-  transform: translate(-50%, -50%); 
+  transform: translate(-50%); 
   width: 450px;
   max-width: 450px;
   height: auto;
@@ -75,6 +77,7 @@ export const StyledLoginSection = styled.section`
       display: grid;
       place-items: center;
       background: #e50914;
+      margin-top: 1.5rem;
       color: #fff;
       cursor: pointer;
       font-weight: 500;
@@ -140,5 +143,44 @@ export const StyledLoginSection = styled.section`
   }
   & p:last-child{
     margin-bottom: 5rem;
+  }
+`;
+
+export const StyledLoginFooter = styled.footer`
+
+  width: 100%;
+  height: 248px;
+  margin:-248px 0 0 0;
+  margin:-248px 0 0 0;
+  background: rgba(0,0,0,.75);
+  color: rgba(115,115,115);
+  &>div{
+    margin:0 auto;
+    font-size: 1rem;
+    font-weight: 400;
+    width: 100%;
+    max-width: 1000px;
+    padding: 30px 0 0 0;
+
+    &>p:first-child{
+      margin: 30px 0;
+    }
+    &>ul{
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      &>li{
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        min-width: 250px;
+        font-size: 13px;
+      }
+    }
+    &>div:last-child{
+      background: #000;
+      width: 122px;
+      margin-right: auto;
+    }
   }
 `;
