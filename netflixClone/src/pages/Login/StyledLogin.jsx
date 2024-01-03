@@ -147,7 +147,6 @@ export const StyledLoginSection = styled.section`
 `;
 
 export const StyledLoginFooter = styled.footer`
-
   width: 100%;
   height: 248px;
   margin:-248px 0 0 0;
