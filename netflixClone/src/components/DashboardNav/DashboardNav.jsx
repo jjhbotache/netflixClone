@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { StyledDashboardNav } from "./DashboardNavStyledComponents";
+import { Link } from "react-router-dom";
 
 export default function DashboardNav() {
   const profileImgLink = useRef("https://occ-0-1472-116.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABfc2NGa6lIcAJVA6TOdGwQ921W3_2jicZyTZfp6rgNO3xGdvDHy1o1FYXVEz3YqxnIcX71bT6gPtBf3nhpZ3XyDcITrHPTI5jJ3J.png?r=145");
@@ -32,7 +33,7 @@ export default function DashboardNav() {
           <a href="#">Movies</a>
         </li>
         <li>
-          <a href="#">My list</a>
+          <Link to="/mylist" >My list</Link>
         </li>
       </ul>
       <div className="profile">

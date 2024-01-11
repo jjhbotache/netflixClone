@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { bigScreenWidthInPx } from "../../consts/styleConsts";
 
 export const StyledMoreReazonsSection = styled.section`
+  margin-top: 2em;
   box-sizing: border-box;
-  background-color: #000;
   color: white;
   padding: 0 2rem;
   width: 100%;

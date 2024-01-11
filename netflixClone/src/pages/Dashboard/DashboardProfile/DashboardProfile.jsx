@@ -3,6 +3,8 @@ import { DashboardProfileContainer, DashboardProfileProfilesContainer } from "./
 
 export default function DashboardProfile() {
   const navigate = useNavigate();
+  // if there is not a token, redirect to login
+  if(!localStorage.getItem("token")) navigate("/login");
 
   const profiles = [
     {

@@ -1,9 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import DashboardNav from "../../../components/DashboardNav/DashboardNav";
 import DashboardSlider from "../../../components/DashboardSlider/DashboardSlider";
 import { CoverFirstDiv, SlidersContainer } from "./DashboardHomeStyledComponents";
+import DashboardFooter from "../../../components/DashboardFooter/DashboardFooter";
 
 export default function DashboardHome() {
   const profileId = localStorage.getItem("profileId");
+  // if there is no profileId, redirect to /dashboard/profile
+  const navigate = useNavigate();
+  if (!profileId) navigate("/dashboard/profile");
+
   const arrayInfo1 = [
     "https://occ-0-1472-116.1.nflxso.net/dnm/api/v6/6gmvu2hxdfnQ55LZZjyzYR4kzGk/AAAABdcL-TCuDYQy8AZpOBDHD4avuNv0n8fn0YgJBLGRNz3XOCci_CiFdY9adbW_lwrsd6-ypnIv1YETxOvYwy5IRxEGQ6YpU4D3vpHIFcInxbBeDX2Nx5LpVcST5sum8mxitU_3.jpg?r=73f",
     "https://occ-0-1472-116.1.nflxso.net/dnm/api/v6/6gmvu2hxdfnQ55LZZjyzYR4kzGk/AAAABcuxRYkNaMi6oo0rLjqNrRh_7wTMwpvDuECSb4ZHG1tBMEKiOQaQ25HTUpm7ks3mXnL9twDB2SYqZBeFE-ZYcfyTQ64M4yw_wVdS01dUlnZ_HR5yNAAJqi8AIW_iaSihENz4RRYyGwSMro9M9-atmCGz-5bC2u_meQPeCq6bLLrD5QVufihkBPoRcWXdLfn76cqNTkUo9uEEXUhip2W-GGLXhZPDnn55MdJl_lCDTrV0WXckxXIjGEO_LTgydpEVGh1be7-dX6EBaLEDFWmaRgm6p7KNEU_L6vO4HgNF3AitSyzUyeVRDo9Rcy3849HwT5P8ytayky_jFPygP_npfT4spkooXGZ7yYVx6V2Dwq7lhCXlKfx7Sg.jpg?r=b42",
@@ -210,6 +216,7 @@ export default function DashboardHome() {
         })
       }
       </SlidersContainer>
+      <DashboardFooter />
     </>
   );
 }

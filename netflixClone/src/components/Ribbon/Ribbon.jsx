@@ -5,13 +5,13 @@ export default function Ribbon() {
     position: relative;
     display: grid;
     place-items: center;
-    overflow: hidden;
     width: 100%;
-    height: 100px;
+    height: auto;
+    overflow: hidden;
   `;
 
   const StyledRibbon = styled.div`
-
+    
     margin-top: 2rem;
     border-top-left-radius: 50% 25%;
     border-top-right-radius: 50% 25%; 
@@ -23,7 +23,6 @@ export default function Ribbon() {
     rgba(184, 40, 105, 1),
     rgba(33, 13, 22, 1) 95%
     );
-    overflow: hidden;
     width: 120%;
     height: 100px;
 
@@ -40,7 +39,7 @@ export default function Ribbon() {
       background: radial-gradient(
       50% 500% at 50% -420%,
       rgba(64, 97, 231, 0.4) 80%,
-      rgba(0, 0, 0, 0.1) 100%
+      rgba(20, 20, 20, 1) 100%
       ),black;
 
       border-top-left-radius: 50% 25%;

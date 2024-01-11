@@ -53,10 +53,10 @@ export const CoverFirstDiv = styled.div`
     }
     .synopsis{
       font-size: 1.2vw;
-      font-weight: 400;
+      font-weight: 500;
       color: #fff;
       margin-top: 1.2vw;
-      text-shadow: 2px 2px 4px rgba(0,0,0,.45);
+      text-shadow: 2px 2px 4px rgba(0,0,0,.9);
     }
 
     .btnsContainer{

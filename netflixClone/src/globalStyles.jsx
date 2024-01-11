@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: 'Open Sans', sans-serif;
-    background: black;
+    background: rgba(20, 20, 20, 1);
     color: white;
   }
   ul,img,button,summary,h1,h2,h3,h4,h5,h6{
