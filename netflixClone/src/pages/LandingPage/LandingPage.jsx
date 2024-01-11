@@ -10,11 +10,14 @@ import QuestionsSection from "../../components/QuestionsSection/QuestionsSection
 import Ribbon from "../../components/Ribbon/Ribbon";
 import TrendingSection from "../../components/TrendingSection/TrendingSection";
 import seriesBackground from "../../assets/PNG/bg_series.jpg";
+import { useNavigate } from "react-router-dom";
 
 
 
 
 export default function LandingPage() {
+  const navigate = useNavigate();
+  if (!!localStorage.getItem("token")) navigate("/dashboard");
   return(
     <StyledFirstSection>
         <img src={seriesBackground} alt="series background" />

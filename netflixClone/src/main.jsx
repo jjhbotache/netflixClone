@@ -7,7 +7,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import router from './router.jsx';
+import router from './router/router.jsx';
 
 document.addEventListener('click', detailsCloser);
 
