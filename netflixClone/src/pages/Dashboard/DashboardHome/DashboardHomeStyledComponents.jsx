@@ -108,9 +108,9 @@ export const CoverFirstDiv = styled.div`
 
 export const SlidersContainer = styled.div`
   box-sizing: border-box;
-  padding-bottom: 3em;
+  padding-bottom: 5em;
   width: 100%;
-  height: 100vh;
+  height: auto;
   padding: 0 3rem;
   position: relative;
   z-index: 4;

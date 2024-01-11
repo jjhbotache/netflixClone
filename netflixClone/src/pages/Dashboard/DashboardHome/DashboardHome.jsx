@@ -91,31 +91,31 @@ export default function DashboardHome() {
 
   const imgsArrays = [
     {
-      title: "Tendencias actuales",
+      title: "We belive you'll love these",
       array: arrayInfo1,
     },
     {
-      title: "Continuar viendo",
+      title: "currently on Netflix",
       array: arrayInfo2,
     },
     {
-      title: "Originales de Netflix",
+      title: "continue watching",
       array: arrayInfo3,
     },
     {
-      title: "Agregados recientemente",
+      title: "dramatic series",
       array: arrayInfo4,
     },
     {
-      title: "Dramas",
+      title: "Irreverent programs clamed by critics",
       array: arrayInfo5,
     },
     {
-      title: "Comedias",
+      title: "Becase you saw DEATH NOTE ",
       array: arrayInfo6,
     },
     {
-      title: "Películas de acción",
+      title: "Comedies",
       array: arrayInfo7,
     },
   ]
