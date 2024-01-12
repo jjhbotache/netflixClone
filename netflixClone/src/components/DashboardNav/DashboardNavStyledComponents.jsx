@@ -4,6 +4,7 @@ export const StyledDashboardNav = styled.nav`
   width: 100%;
   height: 68px;
 
+  details.small-menu{ display: none; }
   ${(props) =>{
     if(props.$pixelsScrolled > 0){
       return `
@@ -71,6 +72,58 @@ export const StyledDashboardNav = styled.nav`
       color: #fff;
       font-size: 18px;
       font-weight: 500;
+    }
+  }
+
+
+  @media (width <= 884px) {
+    details.small-menu {
+      position: relative;
+      display: block;
+      margin-right: auto;
+      margin-left: 1em;
+      &>ul {
+        margin-top: 1em;
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 16.25em;
+        padding: 1em;
+        
+        background-color: rgba(0,0,0,0.8);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2em;
+
+        border-radius: 0.25em;
+        border-top: 0.125em solid white;
+        li {
+          a {
+            color: #fff;
+            font-size: 14px;
+            transition: 0.2s;
+            &:hover {
+              opacity: 0.8;
+            }
+          }
+        }
+
+      }
+      span.small-triangle {
+        position: absolute;
+        top: 1.4em;
+        left: 8.125em;
+        transform: translateX(-50%) rotateX(25deg);
+        color: white;
+      }
+        
+    }
+    &>ul {
+      display: none;
     }
   }
 `;
