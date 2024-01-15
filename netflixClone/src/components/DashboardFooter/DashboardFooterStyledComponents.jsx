@@ -1,9 +1,13 @@
 import styled from "styled-components";
 
 export const DashboardFooterContainer = styled.footer`
-  width: 80%;
+  display: grid;
+  place-items: start;
+  width: 100%;
+  max-width: 920px;
   margin: auto;
-  padding: 0rem 3rem;
+  margin-top: 5em;
+  padding: 0rem 8vw;
   box-sizing: border-box;
   font-size: 13px;
   font-weight: 400;
@@ -16,11 +20,13 @@ export const DashboardFooterContainer = styled.footer`
   }
   .member-footer-links{
     display: flex;
+    justify-content: space-between; 
     flex-wrap: wrap;
     list-style: none;
     padding: 0;
     margin-top: 2em;
     li{
+      min-width: 110px;
       width: 23%;
       margin-right: 1rem;
       margin-bottom: 1rem;

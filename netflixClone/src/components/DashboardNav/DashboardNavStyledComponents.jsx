@@ -8,7 +8,7 @@ export const StyledDashboardNav = styled.nav`
   ${(props) =>{
     if(props.$pixelsScrolled > 0){
       return `
-        background-color: rgba(0,0,0,1);
+        background-color: rgba(20,20,20,1);
         transition: background-color 0.6s;
       `
     }else{
@@ -24,11 +24,20 @@ export const StyledDashboardNav = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 0 3rem;
+  @media screen and (width > 500px) and (width < 800px) {
+    padding: 0 4%;
+  }
+  @media screen and (width < 500px) {
+    padding: 0 4%;
+  }
+
 
   position: fixed;
   top: 0;
   z-index: 1000;
   box-sizing: border-box;
+
+
   img {
     width: 100px;
   }
@@ -68,15 +77,16 @@ export const StyledDashboardNav = styled.nav`
       border-radius: 2px;
       margin-right: 10px;
     }
-    .profile-name {
-      color: #fff;
-      font-size: 18px;
-      font-weight: 500;
-    }
   }
 
 
   @media (width <= 884px) {
+    height: 41px;
+    font-size: 9px;
+    font-weight: 600;
+
+    
+
     details.small-menu {
       position: relative;
       display: block;
@@ -88,9 +98,10 @@ export const StyledDashboardNav = styled.nav`
         display: block;
         position: absolute;
         top: 100%;
-        left: 0;
         width: 16.25em;
         padding: 1em;
+        left: 50%;
+        transform: translateX(-50%);
         
         background-color: rgba(0,0,0,0.8);
         display: flex;
@@ -116,7 +127,7 @@ export const StyledDashboardNav = styled.nav`
       span.small-triangle {
         position: absolute;
         top: 1.4em;
-        left: 8.125em;
+        left: 50%;
         transform: translateX(-50%) rotateX(25deg);
         color: white;
       }
@@ -124,6 +135,26 @@ export const StyledDashboardNav = styled.nav`
     }
     &>ul {
       display: none;
+    }
+
+    img{
+      height: 45%;
+      width: auto;
+    }
+
+    .profile{
+      height: 80%;
+      width: auto;
+      margin: auto 0;
+      details,summary{
+        height: 100%;
+        box-sizing: border-box;
+      }
+      img{
+        height: 100%;
+        width: auto;
+      }
+
     }
   }
 `;

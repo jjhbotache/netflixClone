@@ -1,6 +1,20 @@
 import { DashboardFooterContainer } from "./DashboardFooterStyledComponents";
 
 export default function DashboardFooter() {
+  const footerLinks = [
+    { href: '/browse/audio-description', text: 'Audio descriptivo' },
+    { href: 'https://help.netflix.com/', text: 'Centro de ayuda' },
+    { href: '/redeem', text: 'Tarjetas de regalo' },
+    { href: 'https://media.netflix.com/', text: 'Prensa' },
+    { href: 'http://ir.netflix.com/', text: 'Relaciones con inversionistas' },
+    { href: 'https://jobs.netflix.com/', text: 'Empleo' },
+    { href: 'https://help.netflix.com/legal/termsofuse', text: 'Términos de uso' },
+    { href: 'https://help.netflix.com/legal/privacy', text: 'Privacidad' },
+    { href: 'https://help.netflix.com/legal/notices', text: 'Avisos legales' },
+    { href: '/Cookies', text: 'Preferencias de cookies' },
+    { href: 'https://help.netflix.com/legal/corpinfo', text: 'Información corporativa' },
+    { href: 'https://help.netflix.com/contactus', text: 'Contáctanos' },
+  ];
   return (
     <DashboardFooterContainer>
       <div className="social-links">
@@ -10,19 +24,12 @@ export default function DashboardFooter() {
         <a href="https://www.youtube.com/channel/UC5ZiUaIJ2b5dYBYGf5iEUrA" target="_blank" aria-label="youtube" > <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg-icon svg-icon-youtube-logo ltr-4z3qvp e1svuwfo1" data-name="Youtube" aria-hidden="true" > <path fill-rule="evenodd" clip-rule="evenodd" d="M22.54 6.67C22.288 5.71873 21.549 4.97331 20.6 4.713C18.88 4.25 12 4.25 12 4.25C12 4.25 5.11997 4.25 3.39997 4.713C2.45094 4.97331 1.71199 5.71873 1.45997 6.67C1.14265 8.42869 0.988663 10.213 0.99997 12C0.988663 13.787 1.14265 15.5713 1.45997 17.33C1.71288 18.2825 2.45401 19.0282 3.40497 19.287C5.11997 19.75 12.005 19.75 12.005 19.75C12.005 19.75 18.885 19.75 20.6 19.287C21.549 19.0267 22.288 18.2813 22.54 17.33C22.8573 15.5713 23.0113 13.787 23 12C23.0113 10.213 22.8573 8.42869 22.54 6.67ZM9.74997 15.27V8.729L15.5 12L9.74997 15.27Z" fill="currentColor" ></path> </svg> </a>
       </div>
       <ul className="member-footer-links">
-        <li><a href="/browse/audio-description"><span>Audio descriptivo</span></a></li>
-        <li><a href="https://help.netflix.com/"><span>Centro de ayuda</span></a></li>
-        <li><a href="/redeem"><span>Tarjetas de regalo</span></a></li>
-        <li><a href="https://media.netflix.com/"><span>Prensa</span></a></li>
-        <li><a href="http://ir.netflix.com/"><span>Relaciones con inversionistas</span></a></li>
-        <li><a href="https://jobs.netflix.com/"><span>Empleo</span></a></li>
-        <li><a href="https://help.netflix.com/legal/termsofuse"><span>Términos de uso</span></a></li>
-        <li><a href="https://help.netflix.com/legal/privacy"><span>Privacidad</span></a></li>
-        <li><a href="https://help.netflix.com/legal/notices"><span>Avisos legales</span></a></li>
-        <li><a href="/Cookies"><span>Preferencias de cookies</span></a></li>
-        <li><a href="https://help.netflix.com/legal/corpinfo"><span>Información corporativa</span></a></li>
-        <li><a href="https://help.netflix.com/contactus"><span>Contáctanos</span></a></li>
-        </ul>
+      {footerLinks.map((link, index) => (
+        <li key={index}>
+          <a href={link.href}><span>{link.text}</span></a>
+        </li>
+      ))}
+      </ul>
       <button>Service code</button>
       <p>© 1997-2024 Netflix, Inc.‎</p>
     </DashboardFooterContainer>

@@ -94,7 +94,6 @@ export default function DashboardHome() {
     "https://occ-0-1472-116.1.nflxso.net/dnm/api/v6/6gmvu2hxdfnQ55LZZjyzYR4kzGk/AAAABfU6KKmfwhTMqefqmD5x8BaTgt-qlnE40NJpKJfHqOGn2nPCmfp3czIS2K3MwH9yk6whQTwmQTLYMvNFjnCXo87lkW-fYZC38hiCdQ8Q_ctc10-fEd2B1c7usRfbxFuRBxeu.jpg?r=58b",
     "https://occ-0-1472-116.1.nflxso.net/dnm/api/v6/6gmvu2hxdfnQ55LZZjyzYR4kzGk/AAAABXyzXxdVO3Dzc-GqGNa44Pv8YdyDt0PEc7dLbp1X7YY3igwPheCFawCVegikQkSmzzBW2oYcNQhcOWYNkoTW5VL70OIg206-Ku8EisWwnV3GAIQyBnoxnJ8GTopgE-GnLQV_.jpg?r=730",
   ]
-
   const imgsArrays = [
     {
       title: "We belive you'll love these",

@@ -60,8 +60,8 @@ export default function DashboardNav() {
         <details>
           <summary>
             <img src={profileImgLink.current} alt="Profile"/>
-          </summary>  
-          hola
+          </summary>  3
+          options
         </details>
       </div>
     </StyledDashboardNav>

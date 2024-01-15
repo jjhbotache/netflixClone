@@ -13,19 +13,22 @@ export const TitlesContainer = styled.ul`
     display: flex;
     align-items: center;
     overflow-x:scroll ;
-    margin-bottom: 1.5em;
+    margin-bottom: 1.5vw;
     padding: 0;
-    gap: 0.4em;
+    gap: 0.4vw;
     position: relative;
     &::-webkit-scrollbar {
     display: none;
     }
-    &>li{
+    &>li{ //each title
       height: auto;
       cursor: pointer;
   
       &>img{
-        width: 20vw;
+        @media screen and (width < 1700px){width: 14vw;}
+        @media screen and (width < 1100px){width: 23vw;}
+        @media screen and (width < 800px){width: 29vw;}
+        @media screen and (width < 500px){width: 43vw;}
         height: auto;
         object-fit: cover;
       }
@@ -69,6 +72,9 @@ export const SliderTitle = styled.span`
   box-sizing: border-box;
   color: #fff;
   font-size: 1.4vw;
+  @media screen and (width < 800px) {
+    font-size: 12px;
+  }
   font-weight: 500;
   margin-bottom: 0.5em;
   display: block;
