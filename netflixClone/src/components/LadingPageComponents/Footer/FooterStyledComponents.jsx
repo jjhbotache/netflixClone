@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { bigScreenWidthInPx } from "../../consts/styleConsts";
+import { bigScreenWidthInPx } from "../../../consts/styleConsts";
 
 export const StyledFooter = styled.footer`
   display: grid;

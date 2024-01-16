@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import DashboardNav from "../../../components/DashboardNav/DashboardNav";
-import DashboardSlider from "../../../components/DashboardSlider/DashboardSlider";
 import { CoverFirstDiv, SlidersContainer } from "./DashboardHomeStyledComponents";
-import DashboardFooter from "../../../components/DashboardFooter/DashboardFooter";
+import { StyledDashboardNav } from "../../../components/DashboardComponents/DashboardNav/DashboardNavStyledComponents";
+import { DashboardFooterContainer } from "../../../components/DashboardComponents/DashboardFooter/DashboardFooterStyledComponents";
 
 export default function DashboardHome() {
   const profileId = localStorage.getItem("profileId");
@@ -126,7 +125,7 @@ export default function DashboardHome() {
   ]
   return (
     <>
-      <DashboardNav />
+      <StyledDashboardNav/>
       <CoverFirstDiv>
         <img
           className="mainImg"
@@ -215,7 +214,7 @@ export default function DashboardHome() {
         })
       }
       </SlidersContainer>
-      <DashboardFooter />
+      <DashboardFooterContainer />
     </>
   );
 }

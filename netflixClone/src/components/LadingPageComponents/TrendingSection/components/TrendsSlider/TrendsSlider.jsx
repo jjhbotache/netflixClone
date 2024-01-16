@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import trendsArrays from "../../consts/trendsArrays";
 import TrendImg from "../TrendImg/TrendImg";
 import { TrendsSliderContainer } from "./TrendsSliderStyledComponents";
-import { bigScreenWidthInPx } from "../../../../consts/styleConsts";
+import { bigScreenWidthInPx } from "../../../../../consts/styleConsts";
 
 export default function TrendsSlider(chosenTrendsToWatch) {
   const trendsImgsToRender = chosenTrendsToWatch.chosenTrendsToWatch.country === "Colombia"

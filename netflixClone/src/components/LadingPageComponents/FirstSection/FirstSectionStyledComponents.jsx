@@ -1,21 +1,37 @@
 import styled from "styled-components";
-import { bigScreenWidthInPx } from "../../consts/styleConsts";
+import { bigScreenWidthInPx } from "../../../consts/styleConsts";
 
-export const StyledJoinWithEmailSection = styled.section`
+export const FirstSectionContainer = styled.section`
+  display: flex;
+  
+  
+  height: 73vh;
+  align-items: end;
+
+
   padding: 0 2rem;
-  margin-top: 2rem;
-  &>h3{
-    font-size: 1rem;
-    font-weight: 400;
-    color: rgba(255, 255, 255,.7);
-  }
-  &>form{
-    display: flex;
-    width: 100%;
-    height: 3.5rem;
-    gap: .5rem;
-    margin-top: 1rem; 
-    
+  
+  &>div {
+    margin: 0 auto 0 0;
+    max-width: 27rem;
+
+    &>h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: white;
+      margin-top: 5rem;
+    }
+    &>h3{
+      color: rgba(255,255,255,0.7);
+      font-size: 1rem;
+      font-weight: 400;
+    }
+    &>form{
+      display: flex;
+      width: 100%;
+      height: 3.5rem;
+      gap: .5rem;
+      margin-top: 1rem; 
       &>input[type="email"] {
         box-sizing: border-box;
         height: 100%;
@@ -54,9 +70,21 @@ export const StyledJoinWithEmailSection = styled.section`
           filter: invert(1);
         }
       }
+    }
   }
+
   @media all and (width > ${bigScreenWidthInPx + "px"}) {
-    padding: 0 5rem;
-    margin-top: 3rem;
+    padding: 0 5rem; 
+    &>div {
+      padding-bottom: 1rem;
+      &>h1{
+        font-size: 2.5rem;
+      }
+      &>p{
+        margin-bottom: 3rem;
+      }
+    }  
   }
+
+
 `;

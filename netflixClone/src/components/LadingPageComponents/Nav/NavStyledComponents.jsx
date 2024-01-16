@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { redNetflixColor } from "../../consts/styleConsts";
+import { redNetflixColor } from "../../../consts/styleConsts";
 import { Link } from "react-router-dom";
 
 export const StyledNav = styled.nav`

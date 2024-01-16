@@ -1,16 +1,16 @@
 import { StyledFirstSection } from "../../AppStyledComponents";
-import FirstSection from "../../components/FirstSection/FirstSection";
-import Footer from "../../components/Footer/Footer";
-import GamesSection from "../../components/GamesSection/GamesSection";
-import JoinWithEmailSection from "../../components/JoinWithEmailSection/JoinWithEmailSection";
-import MoreReazonsSection from "../../components/MoreReazonsSection/MoreReazonsSection";
-import Nav from "../../components/Nav/Nav";
-import PlansSection from "../../components/PlansSection/PlansSection";
-import QuestionsSection from "../../components/QuestionsSection/QuestionsSection";
-import Ribbon from "../../components/Ribbon/Ribbon";
-import TrendingSection from "../../components/TrendingSection/TrendingSection";
 import seriesBackground from "../../assets/PNG/bg_series.jpg";
 import { useNavigate } from "react-router-dom";
+import Nav from "../../components/LadingPageComponents/Nav/Nav";
+import { FirstSectionContainer } from "../../components/LadingPageComponents/FirstSection/FirstSectionStyledComponents";
+import Ribbon from "../../components/LadingPageComponents/Ribbon/Ribbon";
+import PlansSection from "../../components/LadingPageComponents/PlansSection/PlansSection";
+import TrendingSection from "../../components/LadingPageComponents/TrendingSection/TrendingSection";
+import GamesSection from "../../components/LadingPageComponents/GamesSection/GamesSection";
+import MoreReazonsSection from "../../components/LadingPageComponents/MoreReazonsSection/MoreReazonsSection";
+import QuestionsSection from "../../components/LadingPageComponents/QuestionsSection/QuestionsSection";
+import JoinWithEmailSection from "../../components/LadingPageComponents/JoinWithEmailSection/JoinWithEmailSection";
+import Footer from "../../components/LadingPageComponents/Footer/Footer";
 
 
 
@@ -22,7 +22,7 @@ export default function LandingPage() {
     <StyledFirstSection>
         <img src={seriesBackground} alt="series background" />
         <Nav/>
-        <FirstSection/>
+        <FirstSectionContainer/>
         <Ribbon/>
         <PlansSection/>
         <TrendingSection/>
