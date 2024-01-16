@@ -4,6 +4,7 @@ import Product from "./components/Product/Product";
 import ReduxInputcomponent from "./components/ReduxInputcomponent/ReduxInputcomponent";
 import Todo from "./components/Todo/Todo";
 import { captureOrder } from "./functions/paymentFunctions";
+import LoginWithCognito from "./components/LoginWithCognito/LoginWithCognito";
 
 
 
@@ -27,6 +28,8 @@ function App() {
       <Login />
       <hr />
       <ReduxInputcomponent/>
+      <hr />
+      <LoginWithCognito/> 
 
     </main>
   );

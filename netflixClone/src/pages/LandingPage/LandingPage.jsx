@@ -31,7 +31,7 @@ export default function LandingPage() {
         <QuestionsSection/>
         <JoinWithEmailSection/>
         <Footer/>
-      </StyledFirstSection  >
+      </StyledFirstSection>
   )
 };
 
