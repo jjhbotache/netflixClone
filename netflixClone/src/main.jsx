@@ -12,8 +12,8 @@ import router from './router/router.jsx';
 document.addEventListener('click', detailsCloser);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <>
     <RouterProvider router={router} />
     <GlobalStyle />
-  </React.StrictMode>,
+  </>,
 )

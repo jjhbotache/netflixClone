@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { bigScreenWidthInPx } from "../../../consts/styleConsts";
+import { bigScreenWidthInPx } from "../../../constants/styleConsts";
 
 export const StyledTrendingSection = styled.section`
   display: flex;

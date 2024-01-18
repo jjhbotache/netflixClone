@@ -77,7 +77,29 @@ export const StyledDashboardNav = styled.nav`
       border-radius: 2px;
       margin-right: 10px;
     }
+    details>ul{
+        /* make it a floating window at the middle of the screen with a black bg */
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0,0,0,0.8);
+        display: flex;
+        flex-direction: column;
+        padding: 1em;
+        border-radius: 0.25em;
+        border-top: 0.125em solid white;
+        li {
+          font-size: 1.5em;
+          width: 100%;
+          word-wrap: break-word;  
+        }
+        max-width: 90%;
+        max-height: 70%;
+        overflow-y: scroll;
+      }
   }
+
 
 
   @media (width <= 884px) {
@@ -154,7 +176,7 @@ export const StyledDashboardNav = styled.nav`
         height: 100%;
         width: auto;
       }
-
+      
     }
   }
 `;

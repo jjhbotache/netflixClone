@@ -1,6 +1,6 @@
-import netflixLogo from '../../assets/PNG/Netflix_Logo_PMS.png'
-import languajeImg from '../../assets/PNG/translate.png'
-import triangle from '../../assets/SVG/angle-right.svg'
+import netflixLogo from '../../../assets/PNG/Netflix_Logo_PMS.png'
+import languajeImg from '../../../assets/PNG/translate.png'
+import triangle from '../../../assets/SVG/angle-right.svg'
 import { StyledLogo, StyledNav, StyledNavLanguajeSelect, StyledNavLoginButton } from './NavStyledComponents'
 
 export default function Nav() {

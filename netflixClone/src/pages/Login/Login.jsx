@@ -5,28 +5,26 @@ import {
   StyledLogo,
 } from "./StyledLogin";
 import netflixLogo from "../../assets/PNG/Netflix_Logo_PMS.png";
-import { StyledNavLanguajeSelect } from "../../components/Nav/NavStyledComponents";
 import languajeImg from '../../assets/PNG/translate.png'
 import triangle from '../../assets/SVG/angle-right.svg'
 import { useEffect } from "react";
+import { StyledNavLanguajeSelect } from "../../components/LadingPageComponents/Nav/NavStyledComponents";
+import getParametersFromURL from "../../functions/simpleHelpers/getParametersFromURL";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate()
 
 
   useEffect(() => {
-    const dashboardUrl = 'http://localhost:5173/dashboard';
 
-    const alreadyLogged = localStorage.getItem('token')
+    const alreadyLogged = localStorage.getItem('loginData')
     if(alreadyLogged) {
-      window.location.assign(dashboardUrl)
+      navigate('/dashboard/home')
     }else{
-      const currentUrl = window.location.href
-      const token = currentUrl.split('access_token=')[1]
-      if(token) {
-        localStorage.setItem('token', token)
-        window.location.assign(dashboardUrl)
-      }
+      navigate('/login')
     }
+
   }, []);
 
   function onLogin(e) {

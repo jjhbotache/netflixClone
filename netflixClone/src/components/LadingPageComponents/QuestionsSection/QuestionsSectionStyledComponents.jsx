@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { bigScreenWidthInPx } from "../../../consts/styleConsts";
+import { bigScreenWidthInPx } from "../../../constants/styleConsts";
 
 export const StyledQuestionsSection = styled.section`
   padding: 0 2rem;

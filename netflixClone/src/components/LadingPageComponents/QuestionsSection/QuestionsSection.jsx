@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { StyledQuestionsSection } from "./QuestionsSectionStyledComponents";
-import questions from "./consts/questions";
+import questions from "./constants/questions";
 
 export default function QuestionsSection() {
   return(

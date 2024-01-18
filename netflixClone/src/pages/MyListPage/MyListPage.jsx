@@ -1,5 +1,5 @@
-import DashboardFooter from "../../components/DashboardFooter/DashboardFooter";
-import DashboardNav from "../../components/DashboardNav/DashboardNav";
+import DashboardFooter from "../../components/DashboardComponents/DashboardFooter/DashboardFooter";
+import DashboardNav from "../../components/DashboardComponents/DashboardNav/DashboardNav";
 import { MyListPageContainer } from "./MyListPageStyledComponents";
 
 export default function MyListPage() {
@@ -29,7 +29,7 @@ export default function MyListPage() {
           ))}
         </div>
       </MyListPageContainer>
-      <DashboardFooter />
+      <DashboardFooter/>
     </>
   )
 };
