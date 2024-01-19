@@ -37,7 +37,6 @@ export default function ProfileManage() {
   }, []);
 
   function createProfile() {
-    alert("create profile")
     navigate("/profile/create");
   }
   function editProfile(id) {

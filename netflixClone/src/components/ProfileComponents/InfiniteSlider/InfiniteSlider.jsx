@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { InfiniteSliderContainer } from "./InfiniteSliderStyledComponents";
 
-export default function InfiniteSlider({imgArray,onChange}) {
+export default function InfiniteSlider({imgArray,onChange=(i)=>{console.log(i);}}) {
   const [sliderInfo, setSliderInfo] = useState({
     onMove: false,
     imgArray: imgArray,
@@ -36,12 +36,14 @@ export default function InfiniteSlider({imgArray,onChange}) {
     }
     // make a promise to wait until the slider gets scroll position in specified range
     new Promise((resolve, reject) => {
+      let counter = 0;
       const expectedScrollLeft = direction === "next" 
         ? sliderRef.current.scrollLeft + fraction 
         : sliderRef.current.scrollLeft - fraction;
 
       const interval = setInterval(() => {
-        if (sliderRef.current.scrollLeft == expectedScrollLeft) {
+        counter++;
+        if (sliderRef.current.scrollLeft == expectedScrollLeft || counter > 3000) {
           clearInterval(interval);
           resolve();
         }
@@ -77,8 +79,8 @@ export default function InfiniteSlider({imgArray,onChange}) {
   }
 
   useEffect(() => {
+    onChange(sliderInfo.currentImg);
     if (lastScrolledDirection.current==undefined) return;
-    
     sliderRef.current.scrollLeft = sliderRef.current.scrollWidth / 3;
   }, [sliderInfo]);
 

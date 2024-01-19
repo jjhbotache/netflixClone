@@ -1,13 +1,18 @@
 import styled from "styled-components";
 
 export const InfiniteSliderContainer = styled.div`
-
+width: 100%;
+box-sizing: border-box;
 position: relative;
+display: grid;
+grid-template-columns: 1fr 5fr 1fr;
 &>div{
-    width: 100%;
+    width: auto;
+    margin: auto;
+    place-items: center;
     max-width: 5em;
     aspect-ratio: 1/1;
-    
+    display: flex;
     background: radial-gradient(
       circle,
       rgba(20, 20, 20, 1) 0%,
@@ -15,16 +20,11 @@ position: relative;
       rgba(20, 20, 20, 0.5) 100%
     );
     border-radius: 50%;
-    /* overflow-x: scroll; */
     overflow-y: hidden;
     
     &::-webkit-scrollbar {
       display: none;
     }
-    
-    
-    display: flex;
-
     &>img{
       width: 100%;
       max-width: 100px;
@@ -37,10 +37,13 @@ position: relative;
   
   }
   & button{
-    position: absolute;
-    top: 0;
+    /* position: absolute;
+    top: 0; */
+    display: grid;
+    place-items: center;
+
     height: 100%;
-    width: 50%;
+    width: 100%;
     opacity: .5;
     
     border: none;
@@ -51,7 +54,7 @@ position: relative;
 
     font-stretch: condensed;
     font-weight: lighter;
-    font-size:1em;
+    font-size:2vw;
   }
   & button:hover{
     opacity: 1;
@@ -62,7 +65,7 @@ position: relative;
       rgba(20, 20, 20, 0) 50%,
       rgba(20, 20, 20, .7) 100%
     );
-    left: -20%;
+    left: 0%;
     text-align: start;
   }
   & button:last-child{ 
@@ -71,7 +74,7 @@ position: relative;
       rgba(20, 20, 20, 0) 50%,
       rgba(20, 20, 20, .7) 100%
     );
-    right: -20%;
+    right: 0%;
     text-align: end;
   }
 `

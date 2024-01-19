@@ -7,9 +7,9 @@ import { imgsArrays } from "./constants/constants";
 
 export default function DashboardHome() {
   const profileId = localStorage.getItem("profileId");
-  // if there is no profileId, redirect to /dashboard/profile
+  // if there is no profileId, redirect to /profile
   const navigate = useNavigate();
-  if (!profileId) navigate("/dashboard/profile");
+  if (!profileId) navigate("/profile");
 
   
   return (

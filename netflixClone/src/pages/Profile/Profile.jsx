@@ -1,34 +1,20 @@
 import { Link, useNavigate } from "react-router-dom";
 import { DashboardProfileContainer, DashboardProfileProfilesContainer } from "./ProfileStyledComponents";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import db from "../../configs/firebase";
 
 export default function Profile() {
   const navigate = useNavigate();
+  const [profiles, setProfiles] = useState([
+    // {
+    //   image: "https://occ-0-1472-116.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABfc2NGa6lIcAJVA6TOdGwQ921W3_2jicZyTZfp6rgNO3xGdvDHy1o1FYXVEz3YqxnIcX71bT6gPtBf3nhpZ3XyDcITrHPTI5jJ3J.png?r=145",
+    //   name: "Profile 1"
+    // },
+  ]);
   // if there is not a token, redirect to login
   
 
-  const profiles = [
-    {
-      image: "https://occ-0-1472-116.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABfc2NGa6lIcAJVA6TOdGwQ921W3_2jicZyTZfp6rgNO3xGdvDHy1o1FYXVEz3YqxnIcX71bT6gPtBf3nhpZ3XyDcITrHPTI5jJ3J.png?r=145",
-      name: "Profile 1"
-    },
-    {
-      image: "https://occ-0-1472-116.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABZEX3QGo9CY-QYp5coxwoY4sG7IipZ4-b_xDtkllL2fSjefwKNz1-pDbVdSLEZKpn3X-pcPquDKaei_SfQhBQG-aAKPSxnkRXNJ3.png?r=438",
-      name: "Profile 2"
-    },
-    {
-      image: "https://occ-0-1472-116.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABWgK2iOBuSWOJ-ovJHR1fDdV-c-rgWy2Olii4sJjjceLFuXrLHAV_mPbt1Q2LGQ5v1HilXIfUxycCqSOKvHJv8y87GkXIpWUCy8J.png?r=a8d",
-      name: "Profile 3"
-    },
-    {
-      image: "https://occ-0-1472-116.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABaeOl2mVjc2BG7twbwecrYFqzH-xeUHR0MXXlfZUhwBiL3bdqn_k49kPd6Y38yDWTWzbI6Mjkx3tsbox50V2Fymf8FvdZLHNSrT5.png?r=d4a",
-      name: "Profile 4"
-    },
-    {
-      image: "https://occ-0-1472-116.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABXrTcV6KUM7rT_zVf_3kE4nFkjtI2IcTwghlVn3IxHnH_4ZVTt3V4AKhLj6fTl9JjCZraUA2hnugtSwxWjufGgxRYRtV1D64nRQ2.png?r=a13",
-      name: "Profile 5"
-    },
-  ];
 
   function profileChosen(index) {
     localStorage.setItem("profileId",parseInt(index+1));
@@ -37,10 +23,43 @@ export default function Profile() {
 
   useEffect(() => {
     if(!localStorage.getItem("loginData")) navigate("/login");
+
+    // ask to the Local Storage for the profiles of the current user
+    const {profiles,id} = JSON.parse(localStorage.getItem("userData"));
+    if (!profiles) {
+      // try calling directly to firebase
+      getDoc(doc(db, "usersCollection", id)).then((document) => {
+        if (document.exists()) {
+          // console.log("Document data:", document.data());
+          const profiles = document.data().profiles;
+          localStorage.setItem("profiles", JSON.stringify(profiles));
+
+          // look for the profile data in the profiles collection
+          const promises = [];
+          profiles.forEach(profile => {
+            promises.push(getDoc(doc(db, "profilesCollection", profile)))
+          });
+          Promise.all(promises).then((documents) => {
+            const profiles = [];
+            documents.forEach(document => {
+              profiles.push(document.data());
+            });
+            setProfiles(profiles);
+          })
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+          navigate("/dashboard");
+          return;
+        }
+      });
+
+
+    }
+    
   }, []);
 
-  
-
+  console.log("profiles:", profiles);
   return (
     <DashboardProfileContainer>
       <div>
@@ -49,7 +68,7 @@ export default function Profile() {
           <ul>
             {profiles.map((profile, index) => (
               <li key={index} onClick={e=>profileChosen(index)}>
-                <img src={profile.image} alt="" />
+                <img src={profile.avatar} alt="" />
                 <span>{profile.name}</span>
               </li>
             ))}

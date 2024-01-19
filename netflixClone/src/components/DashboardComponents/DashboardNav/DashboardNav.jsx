@@ -66,7 +66,7 @@ export default function DashboardNav() {
             <img src={profileImgLink.current} alt="Profile"/>
           </summary>
           <ul>
-            <Link to="/dashboard/profile">Profile</Link>
+            <Link to="/profile">Profile</Link>
             {
               // map each key from loginData and create a li with the key name and value
               Object.keys(loginData).map((key, index) => (
