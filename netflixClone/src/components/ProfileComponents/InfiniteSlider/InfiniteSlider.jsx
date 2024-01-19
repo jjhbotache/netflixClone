@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { InfiniteSliderContainer } from "./InfiniteSliderStyledComponents";
 
-export default function InfiniteSlider({imgArray}) {
+export default function InfiniteSlider({imgArray,onChange}) {
   const [sliderInfo, setSliderInfo] = useState({
     onMove: false,
     imgArray: imgArray,
