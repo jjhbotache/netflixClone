@@ -6,10 +6,10 @@ import DashboardNav from "../../../components/DashboardComponents/DashboardNav/D
 import { imgsArrays } from "./constants/constants";
 
 export default function DashboardHome() {
-  const profileId = localStorage.getItem("profileId");
-  // if there is no profileId, redirect to /profile
+  const profileIndexId = localStorage.getItem("profileIndexId");
+  // if there is no profileIndexId, redirect to /profile
   const navigate = useNavigate();
-  if (!profileId) navigate("/profile");
+  if (!profileIndexId) navigate("/profile");
 
   
   return (

@@ -2,8 +2,9 @@ import { useState } from "react";
 import { ProfileCreateContainer } from "./ProfileCreateStyledComponents";
 import InfiniteSlider from "../../../components/ProfileComponents/InfiniteSlider/InfiniteSlider";
 import db from "../../../configs/firebase";
-import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
+import { addDoc, collection, doc, updateDoc, where } from "firebase/firestore";
 import { Navigate, useNavigate } from "react-router-dom";
+import { getRegisters } from "../../../functions/firebaseFunctions/firebaseFunctions";
 
 export default function ProfileCreate() {
   const [newProfileInfo, setNewProfileInfo] = useState({
@@ -32,11 +33,14 @@ export default function ProfileCreate() {
       return;
     }
     console.log("newProfileInfo:", newProfileInfo);
-    addDoc(collection(db,"profilesCollection"), newProfileInfo).then((docRef) => {
+    addDoc(collection(db,"profilesCollection"), newProfileInfo).then(async (docRef) => {
       console.log("Document written with ID: ", docRef.id);
       // get the id of the current user and set a new profile for that user
-      const {id,profiles} = JSON.parse(localStorage.getItem("userData"));
+      // bring the userData from server
 
+      const {sub} = JSON.parse(localStorage.getItem("loginData"));
+      const registers = await getRegisters(db, "usersCollection", where("sub", "==", sub))
+      const {id, profiles} = registers[0];
 
       const newProfiles = [docRef.id]
       if (!!profiles) {
@@ -50,7 +54,10 @@ export default function ProfileCreate() {
         }
       ).then(() => {
         console.log("Document successfully updated!");
-        localStorage.setItem("profiles", JSON.stringify(profiles));        
+        // update the userData in localStorage
+        const userData = JSON.parse(localStorage.getItem("userData"));
+        userData.profiles = newProfiles;
+        localStorage.setItem("userData", JSON.stringify(userData));
       })
       navigate("/profile");
     })

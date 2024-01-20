@@ -18,7 +18,7 @@ import { getRegisters } from "../../functions/firebaseFunctions/firebaseFunction
 
 export default function Dashboard() {
   const navigate = useNavigate()
-  const profile = useRef(localStorage.getItem('profileId'))
+  const profile = useRef(localStorage.getItem('profileIndexId'))
   
 
 
@@ -68,7 +68,7 @@ export default function Dashboard() {
       const decoded = jwtDecode(token)
   
       if(!profile.current && !window.location.href.includes("profile") ){
-        navigate('/dashboard/profile')
+        navigate('/profile')
       }else{
         navigate('/dashboard/home')
       }

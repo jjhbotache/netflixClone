@@ -58,6 +58,7 @@ box-sizing: border-box;
       color: grey;
       font-size: 1.3vw;
       margin-top: 2em;
+      margin-left: auto;
       cursor: pointer;
       text-decoration: none;
       transition: all .1s ease-in-out;

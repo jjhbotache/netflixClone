@@ -1,8 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { DashboardProfileContainer, DashboardProfileProfilesContainer } from "./ProfileStyledComponents";
 import { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, where } from "firebase/firestore";
 import db from "../../configs/firebase";
+import { getRegisters } from "../../functions/firebaseFunctions/firebaseFunctions";
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -12,50 +13,47 @@ export default function Profile() {
     //   name: "Profile 1"
     // },
   ]);
-  // if there is not a token, redirect to login
+  
   
 
 
   function profileChosen(index) {
-    localStorage.setItem("profileId",parseInt(index+1));
+    localStorage.setItem("profileIndexId",parseInt(index+1));
     navigate("/dashboard/home");
   }
 
   useEffect(() => {
+    // if there is no loginData in the localStorage, redirect to login
     if(!localStorage.getItem("loginData")) navigate("/login");
 
-    // ask to the Local Storage for the profiles of the current user
-    const {profiles,id} = JSON.parse(localStorage.getItem("userData"));
-    if (!profiles) {
-      // try calling directly to firebase
-      getDoc(doc(db, "usersCollection", id)).then((document) => {
-        if (document.exists()) {
-          // console.log("Document data:", document.data());
-          const profiles = document.data().profiles;
-          localStorage.setItem("profiles", JSON.stringify(profiles));
+    const {sub} = JSON.parse(localStorage.getItem("loginData"));
+    // get from firestore the data of the current user
+    getRegisters(db, "usersCollection", where("sub", "==", sub)).then(async(usersFound) => {
+      console.log("usersFound:", usersFound);
+      const {profiles} = usersFound[0];
+      // for each profile, get the data of that profile
 
-          // look for the profile data in the profiles collection
-          const promises = [];
-          profiles.forEach(profile => {
-            promises.push(getDoc(doc(db, "profilesCollection", profile)))
-          });
-          Promise.all(promises).then((documents) => {
-            const profiles = [];
-            documents.forEach(document => {
-              profiles.push(document.data());
-            });
-            setProfiles(profiles);
-          })
+      const promises = profiles.map(async (profileId) => {
+        const docRef = doc(db, "profilesCollection",profileId );
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          return docSnap.data();
         } else {
           // doc.data() will be undefined in this case
           console.log("No such document!");
-          navigate("/dashboard");
-          return;
+          console.log("ID: ", profileId);
         }
-      });
+      }
+      );
+      const profilesData = await Promise.all(promises);
+      console.log("profilesData:", profilesData);
+      setProfiles(profilesData)
+
+      
+    });
 
 
-    }
+    
     
   }, []);
 
