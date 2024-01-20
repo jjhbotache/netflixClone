@@ -59,7 +59,7 @@ export default function ProfileManage() {
     navigate(`/profile/edit/${id}`);
   }
   function done() {
-    alert("done")
+    navigate("/profile");
   }
   
 

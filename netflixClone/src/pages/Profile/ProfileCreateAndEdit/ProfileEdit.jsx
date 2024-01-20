@@ -59,13 +59,13 @@ export default function ProfileEdit() {
 
   }
 
-  function saveProfile(e) {
+  async function saveProfile(e) {
     if ( profile.name === "" || profile.avatar === "") {
       alert("Please fill out all fields");
       return;
     }
-    console.log("profile:", profile);
-    updateDoc(doc(db, "profilesCollection", profileId), {
+    updateDoc(
+      doc(db, "profilesCollection", profileId), {
       name: profile.name,
       avatar: profile.avatar,
     }).then(() => {
@@ -84,10 +84,7 @@ export default function ProfileEdit() {
       // once it was deleted, delete from the profiles field of the usersCollection doc
       // fist, get all the profiles from the usersCollection doc
       // then, filter the profiles array to remove the deleted profile
-      const {sub} = JSON.parse(localStorage.getItem("userData"));
-      const users = await getRegisters(db, "usersCollection", where("sub", "==", sub ))
-      console.log("users:", users);
-      const user = users[0];
+      const user = await getUser();
       const profiles = user.profiles;
       console.log("profiles:", profiles);
       console.log("profileId:", profileId);
@@ -106,9 +103,20 @@ export default function ProfileEdit() {
       });
 
       
+
+      
     }).catch((error) => {
       console.error("Error removing document: ", error);
     });
+  }
+
+
+  async function getUser() {
+    const { sub } = JSON.parse(localStorage.getItem("userData"));
+    const users = await getRegisters(db, "usersCollection", where("sub", "==", sub));
+    console.log("users:", users);
+    const user = users[0];
+    return user;
   }
   return (
     <ProfileCreateContainer>
@@ -125,7 +133,7 @@ export default function ProfileEdit() {
             id="name"
             value={profile.name}
             onChange={(e) =>
-              setprofile({ ...profile, name: e.target.value })
+              setProfile({ ...profile, name: e.target.value })
             }
           />
         </div>
