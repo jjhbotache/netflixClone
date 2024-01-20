@@ -31,7 +31,11 @@ export default function ProfileManage() {
         const docRef = doc(db, "profilesCollection",profileId );
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          return docSnap.data();
+          const dataToReturn = {
+            ...docSnap.data(),
+            id: docSnap.id
+          };
+          return dataToReturn;
         } else {
           // doc.data() will be undefined in this case
           console.log("No such document!");
@@ -52,7 +56,7 @@ export default function ProfileManage() {
     navigate("/profile/create");
   }
   function editProfile(id) {
-    alert("edit profile")
+    navigate(`/profile/edit/${id}`);
   }
   function done() {
     alert("done")
@@ -66,7 +70,7 @@ export default function ProfileManage() {
         <DashboardProfileProfilesContainer>
           <ul>
             {profiles.map((profile, index) => (
-              <li key={index} onClick={() => editProfile(index)}>
+              <li key={index} onClick={() => editProfile(profile.id)}>
 
                 <div>
                   <img src={profile.avatar} alt="" />

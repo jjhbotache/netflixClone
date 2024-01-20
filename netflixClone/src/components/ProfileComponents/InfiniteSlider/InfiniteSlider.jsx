@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { InfiniteSliderContainer } from "./InfiniteSliderStyledComponents";
 
-export default function InfiniteSlider({imgArray,onChange=(i)=>{console.log(i);}}) {
+export default function InfiniteSlider({imgArray,onChange=(i)=>{console.log(i);},firstIndex}) {
   const [sliderInfo, setSliderInfo] = useState({
     onMove: false,
     imgArray: imgArray,
@@ -11,12 +11,14 @@ export default function InfiniteSlider({imgArray,onChange=(i)=>{console.log(i);}
   });
   const sliderRef = useRef(null);
   const lastScrolledDirection = useRef(undefined);
+  const showFirstFirstIndex = useRef(false)
 
 
   useEffect(() => {
     sliderRef.current.scrollLeft = sliderRef.current.scrollWidth / 3;
   }, []);
 
+  
 
   function changeImg(direction) {
     // when a button is clicked, according to the direction, 
@@ -43,7 +45,7 @@ export default function InfiniteSlider({imgArray,onChange=(i)=>{console.log(i);}
 
       const interval = setInterval(() => {
         counter++;
-        if (sliderRef.current.scrollLeft == expectedScrollLeft || counter > 3000) {
+        if (sliderRef.current?.scrollLeft == expectedScrollLeft || counter > 3000) {
           clearInterval(interval);
           resolve();
         }
@@ -79,11 +81,22 @@ export default function InfiniteSlider({imgArray,onChange=(i)=>{console.log(i);}
   }
 
   useEffect(() => {
+    // debugger
     onChange(sliderInfo.currentImg);
     if (lastScrolledDirection.current==undefined) return;
     sliderRef.current.scrollLeft = sliderRef.current.scrollWidth / 3;
   }, [sliderInfo]);
-
+  
+  if (!showFirstFirstIndex.current && firstIndex !== undefined) {
+    console.log("firstIndex from the if:",firstIndex);
+    setSliderInfo({
+      ...sliderInfo,
+      currentImg: firstIndex,
+      nextImg: firstIndex + 1 === imgArray.length ? 0 : firstIndex + 1,
+      prevImg: firstIndex - 1 === -1 ? imgArray.length - 1 : firstIndex - 1,
+    });
+    showFirstFirstIndex.current = true;
+  }
 
   return (
     <InfiniteSliderContainer >

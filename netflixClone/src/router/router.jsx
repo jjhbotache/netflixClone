@@ -6,7 +6,8 @@ import Profile from "../pages/Profile/Profile.jsx";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome.jsx";
 import MyListPage from "../pages/MyListPage/MyListPage.jsx";
 import ProfileManage from "../pages/Profile/ProfileManage/ProfileManage.jsx";
-import ProfileCreate from "../pages/Profile/ProfileCreate/ProfileCreate.jsx";
+import ProfileCreate from "../pages/Profile/ProfileCreateAndEdit/ProfileCreate.jsx";
+import ProfileEdit from "../pages/Profile/ProfileCreateAndEdit/ProfileEdit.jsx";
 
 
 
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: "/profile/create",
     element: <ProfileCreate/>,
+  },
+  {
+    path: "/profile/edit/:id",
+    element: <ProfileEdit/>,
   },
   {
     path: "/dashboard/home",

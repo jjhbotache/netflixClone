@@ -68,4 +68,13 @@ box-sizing: border-box;
     color: white;
     background: ${redNetflixColor};
   }
+  &>.deleteProfileBtn{
+    border: 1px solid red;
+    color: red;
+    &:hover{
+      border: 1px solid red;
+      color: white;
+      background: red;
+    }
+  }
 `;
