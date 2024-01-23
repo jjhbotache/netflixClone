@@ -1,20 +1,27 @@
-import { useNavigate } from "react-router-dom";
 import { CoverFirstDiv, SlidersContainer } from "./DashboardHomeStyledComponents";
 import { DashboardFooterContainer } from "../../../components/DashboardComponents/DashboardFooter/DashboardFooterStyledComponents";
 import DashboardSlider from "../../../components/DashboardComponents/DashboardSlider/DashboardSlider";
 import DashboardNav from "../../../components/DashboardComponents/DashboardNav/DashboardNav";
-import { imgsArrays } from "./constants/constants";
+import { imgsArrays } from "../../../constants/titlesImg";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function DashboardHome() {
-  const profileIndexId = localStorage.getItem("profileIndexId");
-  // if there is no profileIndexId, redirect to /profile
   const navigate = useNavigate();
-  if (!profileIndexId) navigate("/profile");
+  const [profileData, setProfileData] = useState(
+    JSON.parse(localStorage.getItem("profileData"))
+  );
+
+  useEffect(()=>{
+    // if there is no profileData in the localStorage, redirect to login
+    if(!localStorage.getItem("profileData"))navigate("/profile")
+
+  },[])
 
   
   return (
     <>
-      <DashboardNav/>
+      <DashboardNav profileData={profileData}/>
       <CoverFirstDiv>
         <img
           className="mainImg"

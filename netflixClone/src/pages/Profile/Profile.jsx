@@ -18,7 +18,8 @@ export default function Profile() {
 
 
   function profileChosen(index) {
-    localStorage.setItem("profileIndexId",parseInt(index+1));
+    // set in LS the profile data
+    localStorage.setItem("profileData", JSON.stringify(profiles[index]));
     navigate("/dashboard/home");
   }
 
@@ -31,13 +32,17 @@ export default function Profile() {
     getRegisters(db, "usersCollection", where("sub", "==", sub)).then(async(usersFound) => {
       console.log("usersFound:", usersFound);
       const {profiles} = usersFound[0];
+      
+      // if there isn't any profile, redirect to profile create
+      if(!profiles || profiles.length==0) navigate("/profile/create");
+      
       // for each profile, get the data of that profile
-
       const promises = profiles.map(async (profileId) => {
         const docRef = doc(db, "profilesCollection",profileId );
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          return docSnap.data();
+          return {...docSnap.data(), id: docSnap.id};
+          
         } else {
           // doc.data() will be undefined in this case
           console.log("No such document!");
