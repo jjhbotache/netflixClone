@@ -1,15 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 import { StyledDashboardNav } from "./DashboardNavStyledComponents";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
 export default function DashboardNav({profileData}) {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [loginData, setLoginData] = useState(
-    jwtDecode(JSON.parse(localStorage.getItem("loginData")).id_token)
+    JSON.parse(localStorage.getItem("loginData"))
+    ? jwtDecode(JSON.parse(localStorage.getItem("loginData")).id_token)
+    : {}
   );
+  const navigate = useNavigate();
 
   useEffect(() => {
+    if (!localStorage.getItem("loginData")) navigate("/login");
+
+
     const handleScroll = () => {
       setScrollPosition(window.scrollY);
     };

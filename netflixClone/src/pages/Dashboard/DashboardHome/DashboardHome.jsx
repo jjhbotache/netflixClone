@@ -5,6 +5,7 @@ import DashboardNav from "../../../components/DashboardComponents/DashboardNav/D
 import { imgsArrays } from "../../../constants/titlesImg";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import DashboardFooter from "../../../components/DashboardComponents/DashboardFooter/DashboardFooter";
 
 export default function DashboardHome() {
   const navigate = useNavigate();
@@ -110,7 +111,7 @@ export default function DashboardHome() {
         })
       }
       </SlidersContainer>
-      <DashboardFooterContainer />
+      <DashboardFooter/>
     </>
   );
 }

@@ -8,6 +8,8 @@ import MyListPage from "../pages/MyListPage/MyListPage.jsx";
 import ProfileManage from "../pages/Profile/ProfileManage/ProfileManage.jsx";
 import ProfileCreate from "../pages/Profile/ProfileCreateAndEdit/ProfileCreate.jsx";
 import ProfileEdit from "../pages/Profile/ProfileCreateAndEdit/ProfileEdit.jsx";
+import Plans from "../pages/Plans/Plans.jsx";
+import WatchTitle from "../pages/WatchTitle/WatchTitle.jsx";
 
 
 
@@ -47,6 +49,14 @@ const router = createBrowserRouter([
   {
     path: "/mylist",
     element: <MyListPage/>,
+  },
+  {
+    path: "/plans",
+    element: <Plans/>,
+  },
+  {
+    path: "/watch-title",
+    element: <WatchTitle/>
   },
 ]);
 

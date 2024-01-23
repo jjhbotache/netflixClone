@@ -2,12 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { SliderContainer, SliderTitle, TitlesContainer } from "./DashboardSliderStyledComponents";
 import { addDoc, doc, updateDoc } from "firebase/firestore";
 import db from "../../../configs/firebase";
+import { useNavigate } from "react-router-dom";
 
 export default function DashboardSlider({title, infoArray: imgArray}) {
   const sectionRef = useRef(null);
   const [profileData, setProfileData] = useState(JSON.parse(localStorage.getItem("profileData")));
+  const navigate = useNavigate();
   
-
 
   function scrollSlider(direction) {
     const currentScrollPosition = sectionRef.current.scrollLeft;
@@ -19,12 +20,12 @@ export default function DashboardSlider({title, infoArray: imgArray}) {
     // if the profileData has a myListTitles, then update in the database and then in the LS
     // else, create a myListTitles in the database and then in the LS
 
-    if (profileData.myListTitles) {
+    if (profileData?.myListTitles) {
       // if the id is already in the myListTitles, delete instead
-      if (profileData.myListTitles.includes(idToAdd)) {
+      if (profileData?.myListTitles?.includes(idToAdd)) {
         // delete from the database
         // then update in the LS
-        const newMyListTitlesArray = profileData.myListTitles.filter(id => id !== idToAdd);
+        const newMyListTitlesArray = profileData?.myListTitles?.filter(id => id !== idToAdd);
         await updateDoc(
           doc(db, "profilesCollection", profileData.id),
           {
@@ -38,7 +39,7 @@ export default function DashboardSlider({title, infoArray: imgArray}) {
         console.log("deleted");
         return;
       } else {
-        const newMyListTitlesArray = [...profileData.myListTitles, idToAdd];
+        const newMyListTitlesArray = [...profileData?.myListTitles, idToAdd];
         // update in the database
         // then update in the LS
 
@@ -71,6 +72,8 @@ export default function DashboardSlider({title, infoArray: imgArray}) {
     }
   }
 
+
+
   useEffect(() => {
     localStorage.setItem("profileData", JSON.stringify(profileData));
   }, [profileData]);
@@ -84,12 +87,12 @@ export default function DashboardSlider({title, infoArray: imgArray}) {
       <TitlesContainer>
       <ul ref={sectionRef}>
         {
-          imgArray.map((img, index) => (
+          imgArray?.map((img, index) => (
             <li key={index}>
               <img src={img.url} alt="" />
               <div className="details-and-options">
-              <button>▶</button>
-              <button className={profileData.myListTitles.includes(img.id) && "title-added"} onClick={e=>addToMyList(img.id)}>+</button>
+              <button onClick={e=>navigate("/watch-title")}>▶</button>
+              <button className={profileData?.myListTitles?.includes(img.id) && "title-added"} onClick={e=>addToMyList(img.id)}>+</button>
               <button>👍</button>
               </div>
             </li>
