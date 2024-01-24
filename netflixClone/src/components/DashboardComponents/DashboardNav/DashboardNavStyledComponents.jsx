@@ -1,4 +1,24 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+import { redNetflixColor } from "../../../constants/styleConsts";
+
+const shake = keyframes`
+
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+`;
 
 export const StyledDashboardNav = styled.nav`
   width: 100%;
@@ -99,6 +119,22 @@ export const StyledDashboardNav = styled.nav`
         overflow-y: scroll;
       }
   }
+
+  .log-out-btn,.unsuscribe-btn{
+    background-color: ${redNetflixColor};
+    padding: 0.5em 1em;
+    border: none;
+    color: #fff;
+    transition: 0.2s;
+    border-radius: 0.25em;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  .unsuscribe-btn:hover{
+    animation: ${shake} cubic-bezier(0.165, 0.84, 0.44, 1) 0.5s infinite;
+  }
+
 
 
 

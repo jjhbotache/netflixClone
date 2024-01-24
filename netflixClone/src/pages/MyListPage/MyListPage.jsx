@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import DashboardFooter from "../../components/DashboardComponents/DashboardFooter/DashboardFooter";
 import DashboardNav from "../../components/DashboardComponents/DashboardNav/DashboardNav";
 import { MyListPageContainer } from "./MyListPageStyledComponents";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getImgById } from "../../constants/titlesImg";
 import { doc, updateDoc } from "firebase/firestore";
 import db from "../../configs/firebase";
@@ -55,7 +55,7 @@ export default function MyListPage() {
 
   function renderListFromLocalStorage() {
     const arrayItems = [];
-    profileData.myListTitles.forEach(indx => {
+    profileData.myListTitles?.forEach(indx => {
       // get img url from index
       const img = getImgById(indx);
       arrayItems.push(img);
@@ -73,7 +73,7 @@ export default function MyListPage() {
             <div className="title" key={img.id}>
             <img src={img.url} alt="my list"  />
             <div className="options">
-              <button>▶</button>
+              <Link to="/watch-title"><button>▶</button></Link>
               <button onClick={e=>deleteTitle(img.id)}>🗑️</button>
             </div>
             </div>

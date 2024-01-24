@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const MyListPageContainer = styled.main`
+  *{text-decoration: none;}
   color: #fff;
   
   min-height: 100vh;

@@ -46,11 +46,14 @@ export const TitlesContainer = styled.div`
           width: 100%;
           height: 100%;
 
+          & *{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
           & button{
-            display: grid;
-            place-items: center;
-            text-align: center;
-            vertical-align: middle;
+            
+
             font-size: x-large;
             background-color: transparent;
             color: #fff;

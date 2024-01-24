@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { SliderContainer, SliderTitle, TitlesContainer } from "./DashboardSliderStyledComponents";
-import { addDoc, doc, updateDoc } from "firebase/firestore";
+import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 import db from "../../../configs/firebase";
 import { useNavigate } from "react-router-dom";
 
@@ -9,6 +9,11 @@ export default function DashboardSlider({title, infoArray: imgArray}) {
   const [profileData, setProfileData] = useState(JSON.parse(localStorage.getItem("profileData")));
   const navigate = useNavigate();
   
+
+  useEffect(() => {
+    // set the profileData from the LS
+    setProfileData(JSON.parse(localStorage.getItem("profileData")));
+  }, []);
 
   function scrollSlider(direction) {
     const currentScrollPosition = sectionRef.current.scrollLeft;
@@ -58,17 +63,28 @@ export default function DashboardSlider({title, infoArray: imgArray}) {
     } else {
       // create a myListTitles in the database
       // then update in the LS
-      await addDoc(
+      console.log(profileData);
+      updateDoc(
         doc(db, "profilesCollection", profileData.id),
         {
           myListTitles: [idToAdd]
         }
-      )
-      setProfileData(prevProfileData => ({
-        ...prevProfileData,
-        myListTitles: [idToAdd]
-      }));
-      console.log("created");
+      ).then((docRef) => {
+        setProfileData(
+          prevProfileData => ({
+            ...prevProfileData,
+            myListTitles: [idToAdd]
+          })
+        );
+        // set it also in the LS
+        localStorage.setItem("profileData", JSON.stringify(profileData));
+        console.log("created");
+        alert("added to myList");
+      })
+      .catch((error) => {
+        console.error("Error adding document: ", error);
+        alert("Error adding document: ", error);
+      });
     }
   }
 
@@ -91,9 +107,9 @@ export default function DashboardSlider({title, infoArray: imgArray}) {
             <li key={index}>
               <img src={img.url} alt="" />
               <div className="details-and-options">
-              <button onClick={e=>navigate("/watch-title")}>▶</button>
-              <button className={profileData?.myListTitles?.includes(img.id) && "title-added"} onClick={e=>addToMyList(img.id)}>+</button>
-              <button>👍</button>
+                <button onClick={e=>navigate("/watch-title")}><i className="fi fi-sr-play"></i></button>
+                <button className={profileData?.myListTitles?.includes(img.id) && "title-added"} onClick={e=>addToMyList(img.id)}><i className="fi fi-rr-add"></i></button>
+                <button><i className="fi fi-br-social-network"></i></button>
               </div>
             </li>
           ))

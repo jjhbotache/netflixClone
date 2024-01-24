@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { StyledDashboardNav } from "./DashboardNavStyledComponents";
 import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import { deleteField, doc, updateDoc } from "firebase/firestore";
+import db from "../../../configs/firebase";
 
 export default function DashboardNav({profileData}) {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -33,6 +35,62 @@ export default function DashboardNav({profileData}) {
     { name: 'My list', path: '/mylist', isLink: true },
   ];
   
+  function logout() {
+    localStorage.removeItem("loginData");
+    localStorage.removeItem("userData");
+    localStorage.removeItem("profileData");
+    navigate("/");    
+  }
+
+  function unsuscribe() {
+    
+    const baseUrl = "https://api.sandbox.paypal.com";
+    // from the userData in localStorage, get the subscriptionInfo 
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const id = userData.subscriptionInfo?.subscriptionID;
+    
+    // if doesn't have a subscription, return
+    if (!id) {
+      alert("You don't have a subscription!");
+      return;
+    };
+
+    // cancel the subscription in paypal
+    fetch(baseUrl + `/v1/billing/subscriptions/${id}/cancel`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${loginData.access_token}`,
+        "Content-Type": "application/json",
+        "body": {
+          "reason": prompt("Why do you want to cancel your subscription?")
+        }
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        alert("Subscription canceled");
+        // remove the subscriptionInfo from the userData in localStorage
+        delete userData.subscriptionInfo;
+        localStorage.setItem("userData", JSON.stringify(userData));
+
+        // remove the subscriptionInfo from the firebase database
+        updateDoc(
+          doc(db, "usersCollection", userData.id),
+          {
+          subscriptionInfo: deleteField(),
+          }
+        );
+        
+
+        if (confirm("do you want to see other plans?")) {
+          navigate("/plans");
+        }
+      });
+
+    
+  }
+
   return(
     <StyledDashboardNav $pixelsScrolled={scrollPosition} >
 
@@ -71,13 +129,12 @@ export default function DashboardNav({profileData}) {
             <img src={profileData?.avatar} alt="Profile"/>
           </summary>
           <ul>
-            <Link to="/profile">Profile</Link>
-            {
-              // map each key from loginData and create a li with the key name and value
-              Object.keys(loginData).map((key, index) => (
-                <li key={index}>  {key}: {loginData[key].toString()}  </li>
-              ))
-            }
+            <h1>Options</h1>
+            <Link to="/profile">Profiles</Link>
+            <Link to="/plans">Plans</Link>
+            <button onClick={unsuscribe} className="unsuscribe-btn">Unsuscribe</button>
+            <button onClick={logout} className="log-out-btn">Log out</button>
+
           </ul>
         </details>
       </div>

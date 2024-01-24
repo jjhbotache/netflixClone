@@ -84,6 +84,7 @@ export const CoverFirstDiv = styled.div`
     .btnsContainer{
       display: flex;
       gap: 1vw;
+      font-size: 1em;
       /* margin-bottom: 10em; */
     }
     .playBtn{
@@ -95,7 +96,7 @@ export const CoverFirstDiv = styled.div`
       background: #fff;
       color: #000;
       /* font-size: 1.2vw; */
-      font-size: .45rem;
+      font-size: inherit;
       font-weight: 700;
       padding: .5em 1em;
       border-radius: 5px;
@@ -115,7 +116,7 @@ export const CoverFirstDiv = styled.div`
       background-color: rgba(109, 109, 110, 0.7);
       color: #fff;
       /* font-size: 1.2vw; */
-      font-size: .45rem;
+      font-size: inherit;
       font-weight: 700;
       padding: .7em 1.2em;
       border-radius: 5px;
