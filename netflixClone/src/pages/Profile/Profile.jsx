@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { DashboardProfileContainer, DashboardProfileProfilesContainer } from "./ProfileStyledComponents";
 import { useEffect, useState } from "react";
-import { doc, getDoc, where } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
 import db from "../../configs/firebase";
 import { getRegisters } from "../../functions/firebaseFunctions/firebaseFunctions";
 
@@ -29,9 +29,22 @@ export default function Profile() {
 
     const {sub} = JSON.parse(localStorage.getItem("loginData"));
     // get from firestore the data of the current user
-    getRegisters(db, "usersCollection", where("sub", "==", sub)).then(async(usersFound) => {
+    const getProfiles = async() => {
+      const userInfo = JSON.parse(localStorage.getItem("userData"));
+      const querySnapshot = await getDocs(
+        query(
+          collection(db, "usersCollection"),
+          where("sub", "==", userInfo.sub)
+        )
+      )
+      const usersFound = querySnapshot.docs.map((doc) => doc.data());
+  
+      
       console.log("usersFound:", usersFound);
-      const {profiles} = usersFound[0];
+
+      // get the profiles of the current user
+      const profiles = usersFound[0].profiles;
+      console.log("profiles:", profiles);
       
       // if there isn't any profile, redirect to profile create
       if(!profiles || profiles.length==0) navigate("/profile/create");
@@ -55,8 +68,8 @@ export default function Profile() {
       setProfiles(profilesData)
 
       
-    });
-
+    }
+    getProfiles()
 
     
     

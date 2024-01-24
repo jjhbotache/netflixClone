@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { deleteField, doc, updateDoc } from "firebase/firestore";
 import db from "../../../configs/firebase";
+import getAuthToken from "../../../functions/paypalFunctions/getAuthToken";
 
 export default function DashboardNav({profileData}) {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -12,16 +13,63 @@ export default function DashboardNav({profileData}) {
     ? jwtDecode(JSON.parse(localStorage.getItem("loginData")).id_token)
     : {}
   );
+  const [planDetails, setPlanDetails] = useState(undefined);
+  const [subscriptionDetails, setSubscriptionDetails] = useState(undefined);
+
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!localStorage.getItem("loginData")) navigate("/login");
-
-
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const id = userData.subscriptionInfo?.subscriptionID;
+    const getPlanAndSubscriptionDetails = async (id) => {
+      const authToken = await getAuthToken();
+      fetch(`https://api.sandbox.paypal.com/v1/billing/subscriptions/${id}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        setSubscriptionDetails(res);
+        // then get the plan details
+        fetch(`https://api.sandbox.paypal.com/v1/billing/plans/${res.plan_id}`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        })
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+          setPlanDetails(res);
+        })
+        .catch((err) => {
+          console.log(err);
+          setPlanDetails(null);
+          setSubscriptionDetails(null);
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+        setPlanDetails(null);
+        setSubscriptionDetails(null);
+      });
+    };
+    if (!!id) {
+      getPlanAndSubscriptionDetails(id);
+    }else{
+      setPlanDetails(null);
+      setSubscriptionDetails(null);
+    }
+    
+  
+    
     const handleScroll = () => {
       setScrollPosition(window.scrollY);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -85,6 +133,10 @@ export default function DashboardNav({profileData}) {
 
         if (confirm("do you want to see other plans?")) {
           navigate("/plans");
+        }else{
+          // re set the planDetails and subscriptionDetails to null
+          setPlanDetails(null);
+          setSubscriptionDetails(null);
         }
       });
 
@@ -128,11 +180,21 @@ export default function DashboardNav({profileData}) {
           <summary>
             <img src={profileData?.avatar} alt="Profile"/>
           </summary>
-          <ul>
+          <ul className="tools">
             <h1>Options</h1>
             <Link to="/profile">Profiles</Link>
             <Link to="/plans">Plans</Link>
-            <button onClick={unsuscribe} className="unsuscribe-btn">Unsuscribe</button>
+            
+            
+            {planDetails ? <>
+              
+              <p><strong>Current plan:</strong>{" " + planDetails.name}</p>
+              <button onClick={unsuscribe} className="unsuscribe-btn">Unsuscribe</button>
+            </>:
+            planDetails === null ?
+            <p>You don't have a plan, get one <Link to="/plans">here!</Link></p> :
+            <h3>Loading...</h3>
+            }
             <button onClick={logout} className="log-out-btn">Log out</button>
 
           </ul>

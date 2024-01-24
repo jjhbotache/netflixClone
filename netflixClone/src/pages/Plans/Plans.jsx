@@ -39,6 +39,13 @@ export default function Plans() {
       subscriptionInfo: data
     });
     console.log("subscription info saved in firebase");
+    // save the info in localStorage
+    localStorage.setItem(
+      "userData",
+      JSON.stringify({ ...userData, subscriptionInfo: data })
+    );
+    alert("Subscription approved!");
+    navigate("/dashboard/home");
   }
   return(
     <PlansContainer>

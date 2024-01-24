@@ -10,7 +10,7 @@ export default function WatchTitle() {
     const userData = JSON.parse(localStorage.getItem("userData"));
     // if the user doesn't have susbscription, redirect to plans
     if(!userData?.subscriptionInfo) {
-      navigate("/plans")
+      dealWithNoSuscriber();
     }else{
     const {subscriptionInfo} = userData;
       
@@ -42,13 +42,24 @@ export default function WatchTitle() {
 
   useEffect(() => {
     if(authorized === false){
-      alert("not authorized, let's find you a plan");
-      navigate("/plans");
+      dealWithNoSuscriber();
     }else if(authorized === true){
       console.log("authorized");
     }
+
+    
   }
   , [authorized]);
+
+  function dealWithNoSuscriber() {
+    setTimeout(() => {
+    if (confirm("Ups, you don't have a plan, Do you want to subscribe?")) {
+      navigate("/plans");
+    } else {
+      navigate("/dashboard/home");
+    }
+    }, 1000);
+  }
   return (
     <WatchTitleStyledContainer>
       <Link to={"/dashboard/home"}><button className="back">

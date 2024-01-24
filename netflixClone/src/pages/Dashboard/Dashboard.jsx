@@ -11,6 +11,7 @@ import {
   doc,
   query,
   where,
+  getDoc,
 } from "firebase/firestore";
 import db from "../../configs/firebase";
 import { getRegisters } from "../../functions/firebaseFunctions/firebaseFunctions";
@@ -30,54 +31,58 @@ export default function Dashboard() {
       if (window.location.href.includes('access_token')) {
         const loginData = getParametersFromURL(window.location.href);
         localStorage.setItem('loginData', JSON.stringify(loginData))
-        getUserInfoOrCreateItInFireCloud()
+
+        getUserInfoOrCreateItInFireCloud(loginData)
       }else{
         navigate('/login')
       }
     }else{
-      getUserInfoOrCreateItInFireCloud()
+      debugger;
+      getUserInfoOrCreateItInFireCloud(loginData)
     }
   }, []);
 
 
-  function getUserInfoOrCreateItInFireCloud() {
-    const loginData = JSON.parse( localStorage.getItem("loginData") );
+  async function getUserInfoOrCreateItInFireCloud(loginData) {
     const userInfo = jwtDecode(loginData.id_token);
+    console.log("userInfo:", userInfo);
     // try to get the user from the firestore database and bring it's data and save it in the local storage
     // if it doesn't exist, create it
-    async function process() {
-      const usersFound = await getRegisters(db, "usersCollection", where("sub", "==", userInfo.sub));
-  
-      if (usersFound.length > 0) {
-        console.log("user exists");
-        console.log("bringing user data...");
-        localStorage.setItem("userData", JSON.stringify(usersFound[0]));
-      } else {
-        const querySnapshot = await addDoc(collection(db, "usersCollection"), {
-          sub: userInfo.sub,
-          email: userInfo.email,
-        });
-        console.log(querySnapshot);
-      }
+    const querySnapshot = await getDocs(
+      query(
+        collection(db, "usersCollection"),
+        where("sub", "==", userInfo.sub)
+      )
+    )
+    const usersFound = querySnapshot.docs.map((doc) => doc.data());
+
+    
+    console.log("usersFound:", usersFound);
+    if (usersFound.length > 0) {
+      const userInfo = usersFound[0];
+      console.log("user exists");
+      console.log("bringing user data...");
+      localStorage.setItem("userData", JSON.stringify(userInfo));
+    } else {
+      // create user
+      const querySnapshot = await addDoc(collection(db, "usersCollection"), {
+        sub: userInfo.sub,
+        email: userInfo.email,
+      });
+      console.log(querySnapshot);
+      alert("user created, welcome!");
     }
-    process()
-    .then(()=>{
-      // debugger
-      const token = JSON.parse(localStorage.getItem("loginData")).id_token;
-      console.log(token);
-      const decoded = jwtDecode(token)
-  
-      if(!profile.current && !window.location.href.includes("profile") ){
-        navigate('/profile')
-      }else{
-        navigate('/dashboard/home')
-      }
-    })
-    .catch((err)=>{
-      console.log(err);
-      navigate('/login')
-    })
-  }
+    const token = JSON.parse(localStorage.getItem("loginData")).id_token;
+    console.log(token);
+    const decoded = jwtDecode(token)
+
+    if(!profile.current && !window.location.href.includes("profile") ){
+      navigate('/profile')
+    }else{
+      navigate('/dashboard/home')
+    }
+    navigate('/login')
+  }1
 
   return (
     <div>

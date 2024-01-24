@@ -16,6 +16,8 @@ export default function DashboardHome() {
   useEffect(()=>{
     // if there is no profileData in the localStorage, redirect to login
     if(!localStorage.getItem("profileData"))navigate("/profile")
+    // if there isn't profileData, go to profile
+    if(!profileData)navigate("/profile")
 
   },[])
 

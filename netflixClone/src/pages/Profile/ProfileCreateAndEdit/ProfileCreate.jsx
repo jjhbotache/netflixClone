@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ProfileCreateContainer } from "./ProfileCreateStyledComponents";
 import InfiniteSlider from "../../../components/ProfileComponents/InfiniteSlider/InfiniteSlider";
 import db from "../../../configs/firebase";
-import { addDoc, collection, doc, updateDoc, where } from "firebase/firestore";
+import { addDoc, collection, doc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import { Navigate, useNavigate } from "react-router-dom";
 import { getRegisters } from "../../../functions/firebaseFunctions/firebaseFunctions";
 
@@ -39,8 +39,19 @@ export default function ProfileCreate() {
       // bring the userData from server
 
       const {sub} = JSON.parse(localStorage.getItem("loginData"));
-      const registers = await getRegisters(db, "usersCollection", where("sub", "==", sub))
-      const {id, profiles} = registers[0];
+      const userInfo = JSON.parse(localStorage.getItem("userData"));
+      const querySnapshot = await getDocs(
+        query(
+          collection(db, "usersCollection"),
+          where("sub", "==", userInfo.sub)
+        )
+      )
+      const usersFound = querySnapshot.docs.map((doc) => {
+        return {...doc.data(), id: doc.id}
+      });
+      const {id, profiles} = usersFound[0];
+      console.log("usersFound:", usersFound);
+      console.log("id:", id);
 
       const newProfiles = [docRef.id]
       if (!!profiles) {

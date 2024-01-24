@@ -117,7 +117,7 @@ export const StyledDashboardNav = styled.nav`
         max-width: 90%;
         max-height: 70%;
         overflow-y: scroll;
-      }
+    }
   }
 
   .log-out-btn,.unsuscribe-btn{

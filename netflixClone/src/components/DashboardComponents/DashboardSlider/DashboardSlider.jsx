@@ -108,7 +108,7 @@ export default function DashboardSlider({title, infoArray: imgArray}) {
               <img src={img.url} alt="" />
               <div className="details-and-options">
                 <button onClick={e=>navigate("/watch-title")}><i className="fi fi-sr-play"></i></button>
-                <button className={profileData?.myListTitles?.includes(img.id) && "title-added"} onClick={e=>addToMyList(img.id)}><i className="fi fi-rr-add"></i></button>
+                <button className={profileData?.myListTitles?.includes(img.id) ? "title-added":""} onClick={e=>addToMyList(img.id)}><i className="fi fi-rr-add"></i></button>
                 <button><i className="fi fi-br-social-network"></i></button>
               </div>
             </li>
