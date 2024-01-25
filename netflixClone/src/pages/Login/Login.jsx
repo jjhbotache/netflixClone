@@ -29,7 +29,8 @@ export default function Login() {
 
   function onLogin(e) {
     e.preventDefault();
-    const callbackUrl = 'http://localhost:5173/dashboard'
+    // const callbackUrl = 'http://localhost:5173/dashboard'
+    const callbackUrl = 'https://netflix-clone-beta-seven-55.vercel.app/dashboard'
     window.location.assign(`https://netflixclone.auth.us-east-2.amazoncognito.com/login?client_id=7k9556rg4hq5citjai71j0ekac&response_type=token&scope=email+openid&redirect_uri=${callbackUrl}`)
   }
 
