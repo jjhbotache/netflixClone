@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { DashboardProfileContainer, DashboardProfileProfilesContainer } from "./ProfileManageStyledComponents";
 import { useEffect, useState } from "react";
-import { doc, getDoc, where } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
 import { getRegisters } from "../../../functions/firebaseFunctions/firebaseFunctions";
 import db from "../../../configs/firebase";
 
@@ -24,31 +24,38 @@ export default function ProfileManage() {
     // get from firestore the data of the current user and profiles
     const {sub} = JSON.parse(localStorage.getItem("loginData"));
     // get from firestore the data of the current user
-    getRegisters(db, "usersCollection", where("sub", "==", sub)).then(async(usersFound) => {
+    const userInfo = JSON.parse(localStorage.getItem("userData"));
+    getDocs(
+      query(
+        collection(db, "usersCollection"),
+        where("sub", "==", userInfo.sub)
+      )
+    ).then(async(querySnapshot) => {
+      const usersFound = querySnapshot.docs.map((doc) => doc.data());
       const {profiles} = usersFound[0];
-      // for each profile, get the data of that profile
-      const promises = profiles.map(async (profileId) => {
-        const docRef = doc(db, "profilesCollection",profileId );
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          const dataToReturn = {
-            ...docSnap.data(),
-            id: docSnap.id
-          };
-          return dataToReturn;
-        } else {
-          // doc.data() will be undefined in this case
-          console.log("No such document!");
-          console.log("ID: ", profileId);
-        }
+    // for each profile, get the data of that profile
+    const promises = profiles.map(async (profileId) => {
+      const docRef = doc(db, "profilesCollection",profileId );
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const dataToReturn = {
+          ...docSnap.data(),
+          id: docSnap.id
+        };
+        return dataToReturn;
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+        console.log("ID: ", profileId);
       }
-      );
-      const profilesData = await Promise.all(promises);
-      console.log("profilesData:", profilesData);
-      setProfiles(profilesData)
+    }
+    );
+    const profilesData = await Promise.all(promises);
+    console.log("profilesData:", profilesData);
+    setProfiles(profilesData)
 
-      
-    });
+    })
+
 
   }, []);
 

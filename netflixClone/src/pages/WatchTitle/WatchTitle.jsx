@@ -78,7 +78,7 @@ export default function WatchTitle() {
             <i className="fi fi-sr-forward"></i>
             <i className="fi fi-sr-volume"></i>
           </div>
-          <div className="title">a serie that you choose</div>
+          <div className="title">a serie that you chose</div>
           <div className="secondary-controls">
             <i className="fi fi-sr-step-forward"></i>
             <i className="fi fi-tr-window-restore"></i>

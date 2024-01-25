@@ -74,7 +74,11 @@ export const CoverFirstDiv = styled.div`
     }
     .synopsis{
       padding-right: 35%;
-      font-size: 1.2vw;
+      font-size: 1.4vw;
+      @media screen and (width < 500px){
+        font-size: 2.3vw;
+        line-height: 1em;
+      }
       font-weight: 500;
       color: #fff;
       margin-top: 1.2vw;
@@ -84,50 +88,48 @@ export const CoverFirstDiv = styled.div`
     .btnsContainer{
       display: flex;
       gap: 1vw;
-      font-size: 1em;
-      /* margin-bottom: 10em; */
+      margin-bottom: 1em;
+      &>button{
+        max-width: 17vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: .6em 1em;
+        font-weight: 700;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        font-size: 0.6rem;
+
+        & i{
+          margin-right: .8em;
+          height: 100%;
+          width: auto;
+          display: grid;
+          place-items: center;
+        }
+        @media screen  and (width < 500px) {
+          padding: .2em 1em;
+          & i{
+            display: none;
+          }
+        }
+        @media screen  and (width < 420px) {
+          padding: .2em 1em;
+          font-size: 0.5em;
+          & i{
+            display: none;
+          }
+        }
+      }
     }
     .playBtn{
-      height: auto;
-
-      display: flex;
-      align-items: center;
-      margin-top: 1.2vw;
       background: #fff;
       color: #000;
-      /* font-size: 1.2vw; */
-      font-size: inherit;
-      font-weight: 700;
-      padding: .5em 1em;
-      border-radius: 5px;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      svg{
-        margin-right: .5em;
-        height: 1.5em;
-      }
     }
     .moreInfoBtn{
-      display: flex;
-      align-items: center;
-      margin-top: 1.2vw;
       background-color: rgba(109, 109, 110, 0.7);
       color: #fff;
-      /* font-size: 1.2vw; */
-      font-size: inherit;
-      font-weight: 700;
-      padding: .7em 1.2em;
-      border-radius: 5px;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      svg{
-        margin-right: .5em;
-        height: 1.5em;
-      }
     }
 
   }

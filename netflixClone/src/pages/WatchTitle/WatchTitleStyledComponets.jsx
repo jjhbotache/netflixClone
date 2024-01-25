@@ -8,6 +8,9 @@ const changeColor = keyframes`
   50% {
     background-color: #580000;
   }
+  25%,75% {
+    background-color: #000e69;
+  }
 `;
 
 const progress = keyframes`
@@ -76,7 +79,7 @@ export const WatchTitleStyledContainer = styled.main`
       content: "";
       height: 2px;
       background-color: ${redNetflixColor};
-      animation: ${progress} 20s cubic-bezier(0.755, 0.05, 0.855, 0.06) infinite;
+      animation: ${progress} 20s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
     }
   }
   .controls{

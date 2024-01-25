@@ -37,7 +37,6 @@ export default function Dashboard() {
         navigate('/login')
       }
     }else{
-      debugger;
       getUserInfoOrCreateItInFireCloud(loginData)
     }
   }, []);
@@ -62,7 +61,12 @@ export default function Dashboard() {
       const userInfo = usersFound[0];
       console.log("user exists");
       console.log("bringing user data...");
-      localStorage.setItem("userData", JSON.stringify(userInfo));
+      localStorage.setItem("userData", JSON.stringify(
+        {
+          ...userInfo,
+          id: querySnapshot.docs[0].id
+        }
+      ));
     } else {
       // create user
       const querySnapshot = await addDoc(collection(db, "usersCollection"), {
@@ -70,6 +74,12 @@ export default function Dashboard() {
         email: userInfo.email,
       });
       console.log(querySnapshot);
+      localStorage.setItem("userData", JSON.stringify(
+        {
+          ...userInfo,
+          id: querySnapshot.id
+        }
+      ));
       alert("user created, welcome!");
     }
     const token = JSON.parse(localStorage.getItem("loginData")).id_token;

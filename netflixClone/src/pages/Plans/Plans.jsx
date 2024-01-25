@@ -12,9 +12,9 @@ export default function Plans() {
     // if there is no userData in localStorage, redirect to login
     if (!localStorage.getItem("userData")) navigate("/login");
     // try to get subscription info from firebase
-    const userData = JSON.parse(localStorage.getItem("userData"));
-    const docRef = doc(db, "usersCollection", userData.id);
     const getDocument = async () => {
+      const userData = JSON.parse(localStorage.getItem("userData"));
+      const docRef = doc(db, "usersCollection", userData.id);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         const data = docSnap.data();
@@ -31,8 +31,9 @@ export default function Plans() {
       }
     };
     getDocument();
-  }, []);
+  }, [])
   function approvedSubscription(data,actions) {
+    console.log("subscription approved");
     const userData = JSON.parse(localStorage.getItem("userData"));
     // save the info in the firebase database
     updateDoc(doc(db, "usersCollection", userData.id), {
@@ -44,9 +45,12 @@ export default function Plans() {
       "userData",
       JSON.stringify({ ...userData, subscriptionInfo: data })
     );
-    alert("Subscription approved!");
     navigate("/dashboard/home");
   }
+  const clientId = 'AYjXcqcsgPF6yBvapCMyUbnQM1kyLUTzHOlqyqmRMex7fiOwU2L-GNDJnmygNx5uwQer5F4q7yRqAWkL';
+  const planIdBasic = 'P-5LH26868MP886054MMWX6PUQ';
+  const planIdStandard = 'P-57S03548CV488084UMWYAYQQ';
+  const planIdPremium = 'P-6XY68561X3021793MMWYAZMI';
   return(
     <PlansContainer>
       <div className="title-section">
@@ -62,21 +66,26 @@ export default function Plans() {
           <p>1 screen</p>
           <p>Mobile and tablet</p>
           <p>Cancel anytime</p>
-          <PayPalScriptProvider options={{ 'client-id': 'AYjXcqcsgPF6yBvapCMyUbnQM1kyLUTzHOlqyqmRMex7fiOwU2L-GNDJnmygNx5uwQer5F4q7yRqAWkL',vault:true }}>
+          <PayPalScriptProvider options={{ 'client-id': clientId,vault:true }}>
           <PayPalButtons 
             style={{
               shape: 'rect',
               color: 'white',
               layout: 'vertical',
               label: 'subscribe'
-          }}
+            }}
             createSubscription={function(data, actions) {
+              
               return actions.subscription.create({
                 /* Creates the subscription */
-                plan_id: 'P-5LH26868MP886054MMWX6PUQ'
+                plan_id: planIdBasic
               });
             }}
             onApprove={approvedSubscription}
+            onError={function(err) {
+              console.log(err);
+              alert("Error, try again later");
+            }}
           />
           </PayPalScriptProvider> 
         </div>
@@ -87,7 +96,7 @@ export default function Plans() {
           <p>2 screens</p>
           <p>Mobile and tablet</p>
           <p>Cancel anytime</p>
-          <PayPalScriptProvider options={{ 'client-id': 'AYjXcqcsgPF6yBvapCMyUbnQM1kyLUTzHOlqyqmRMex7fiOwU2L-GNDJnmygNx5uwQer5F4q7yRqAWkL',vault:true }}>
+          <PayPalScriptProvider options={{ 'client-id': clientId,vault:true }}>
           <PayPalButtons 
             style={{
               shape: 'rect',
@@ -98,7 +107,7 @@ export default function Plans() {
             createSubscription={function(data, actions) {
               return actions.subscription.create({
                 /* Creates the subscription */
-                plan_id: 'P-57S03548CV488084UMWYAYQQ'
+                plan_id: planIdStandard
               });
             }}
             onApprove={approvedSubscription}
@@ -112,7 +121,7 @@ export default function Plans() {
           <p>4 screens</p>
           <p>Mobile and tablet</p>
           <p>Cancel anytime</p>
-          <PayPalScriptProvider options={{ 'client-id': 'AYjXcqcsgPF6yBvapCMyUbnQM1kyLUTzHOlqyqmRMex7fiOwU2L-GNDJnmygNx5uwQer5F4q7yRqAWkL',vault:true }}>
+          <PayPalScriptProvider options={{ 'client-id': clientId,vault:true }}>
           <PayPalButtons 
             style={{
               shape: 'rect',
@@ -123,7 +132,7 @@ export default function Plans() {
             createSubscription={function(data, actions) {
               return actions.subscription.create({
                 /* Creates the subscription */
-                plan_id: 'P-6XY68561X3021793MMWYAZMI'
+                plan_id: planIdPremium
               });
             }}
             onApprove={approvedSubscription}
