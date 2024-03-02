@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ProfileCreateContainer } from "./ProfileCreateStyledComponents";
 import InfiniteSlider from "../../../components/ProfileComponents/InfiniteSlider/InfiniteSlider";
 import db from "../../../configs/firebase";
-import { addDoc, collection, deleteDoc, doc, getDoc, query, updateDoc, where } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, updateDoc, where } from "firebase/firestore";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { getRegisters } from "../../../functions/firebaseFunctions/firebaseFunctions";
 
@@ -86,11 +86,8 @@ export default function ProfileEdit() {
       // once it was deleted, delete from the profiles field of the usersCollection doc
       // fist, get all the profiles from the usersCollection doc
       // then, filter the profiles array to remove the deleted profile
-      const user = await getUser();
-      console.log("user:", user);
-      const profiles = user.profiles;
-      console.log("profiles:", profiles);
-      console.log("profileId:", profileId);
+
+      const {profiles} = JSON.parse( localStorage.getItem("userData"));
       const newProfiles = profiles.filter(profile=> profile !== profileId);
       console.log("newProfiles:", newProfiles);
         // then, update the usersCollection doc with the new profiles array
@@ -117,11 +114,7 @@ export default function ProfileEdit() {
 
   async function getUser() {
     const { sub } = JSON.parse(localStorage.getItem("userData"));
-    const usersCollectionRef = collection(db, "usersCollection");
-
-    const quertySnapshot = query(usersCollectionRef, where("sub", "==", sub));
-
-    const users = quertySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+    const users = await getRegisters(db, "usersCollection", where("sub", "==", sub));
     console.log("users:", users);
     const user = users[0];
     return user;
