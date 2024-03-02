@@ -87,14 +87,14 @@ export default function ProfileEdit() {
       // fist, get all the profiles from the usersCollection doc
       // then, filter the profiles array to remove the deleted profile
       const user = await getUser();
+      console.log("user:", user);
       const profiles = user.profiles;
       console.log("profiles:", profiles);
       console.log("profileId:", profileId);
       const newProfiles = profiles.filter(profile=> profile !== profileId);
       console.log("newProfiles:", newProfiles);
         // then, update the usersCollection doc with the new profiles array
-        debugger
-      await updateDoc(
+      updateDoc(
         doc(db, "usersCollection", user.id),
         {
           profiles: newProfiles,
