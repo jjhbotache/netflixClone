@@ -26,6 +26,8 @@ export default function Profile() {
   useEffect(() => {
     // if there is no loginData in the localStorage, redirect to login
     if(!localStorage.getItem("loginData")) navigate("/login");
+    // if there is no profileData in the localStorage, redirect to profile create
+    if(!localStorage.getItem("profileData")) navigate("/profile/create");
 
     const {sub} = JSON.parse(localStorage.getItem("loginData"));
     // get from firestore the data of the current user
@@ -82,12 +84,14 @@ export default function Profile() {
         <h1>Who's watching now?</h1>
         <DashboardProfileProfilesContainer>
           <ul>
-            {profiles.map((profile, index) => (
+            {profiles.map((profile, index) => {
+              console.log("profile:", profile);
+              return (
               <li key={index} onClick={e=>profileChosen(index)}>
                 <img src={profile.avatar || "" } alt="profile pic" />
                 <span>{profile.name}</span>
               </li>
-            ))}
+            )})}
           </ul>
         </DashboardProfileProfilesContainer>
         <Link to="/profile/manage">Manage profiles</Link>
