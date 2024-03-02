@@ -86,12 +86,14 @@ export default function Profile() {
           <ul>
             {profiles.map((profile, index) => {
               console.log("profile:", profile);
-              return (
+              return profile !== undefined ?
+              (
               <li key={index} onClick={e=>profileChosen(index)}>
                 <img src={profile.avatar || "" } alt="profile pic" />
                 <span>{profile.name}</span>
               </li>
-            )})}
+              ): null
+            })}
           </ul>
         </DashboardProfileProfilesContainer>
         <Link to="/profile/manage">Manage profiles</Link>
