@@ -5,6 +5,7 @@ Este proyecto es un **clon** de Netflix que utiliza **Cognito de AWS** para perm
 ---
 ### Landing page
 La landing page se hizo idéntica a la [página original de Netflix](https://www.netflix.com/). El botón de **sign in** y botones de **get started** llevan a la página de inicio de sesion
+
 ![text](/readmeImgs/netflixClone_landingPage.gif)
 
 ---
@@ -15,21 +16,25 @@ El inicio de sesión se hace mediante el servicio de **Cognito de AWS**. Adicion
 ---
 ### Perfiles
 Una vez que el usuario se ha registrado e iniciado sesión, puede ver y gestionar sus perfiles. Cada perfil tiene su propia lista de favoritos.
+
 ![text](/readmeImgs/netflixClone_profiles.gif)
 
 ---
 ### Página principal y lista
 La página principal muestra todas las películas y series disponibles en Netflix. El usuario las puede agregar a su lista.
+
 ![text](/readmeImgs/netflixClone_mainPage.gif)
 
 ---
 ### Página de simulacion de serie/pelicula
 Cuando el usuario hace clic en una película o serie, se muestra una página que simula ver una serie o pelicula. Esta página mostrará una alerta si no tienes un plan.
+
 ![text](/readmeImgs/netflixClone_watchsSerie.gif)
 
 ---
 ### Página de pago
 El usuario puede comprar una suscripción a Netflix mediante **PayPal**. Cuando se completa la compra, se muestra un mensaje de confirmación y se actualiza el estado del usuario.
+
 ![text](/readmeImgs/netflixClone_paymentProcess.gif)
 
 
