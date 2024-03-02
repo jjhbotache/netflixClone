@@ -84,7 +84,7 @@ export default function Profile() {
           <ul>
             {profiles.map((profile, index) => (
               <li key={index} onClick={e=>profileChosen(index)}>
-                <img src={profile.avatar} alt="" />
+                <img src={profile.avatar || "" } alt="profile pic" />
                 <span>{profile.name}</span>
               </li>
             ))}
