@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ProfileCreateContainer } from "./ProfileCreateStyledComponents";
 import InfiniteSlider from "../../../components/ProfileComponents/InfiniteSlider/InfiniteSlider";
 import db from "../../../configs/firebase";
-import { addDoc, collection, deleteDoc, doc, getDoc, updateDoc, where } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, query, updateDoc, where } from "firebase/firestore";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { getRegisters } from "../../../functions/firebaseFunctions/firebaseFunctions";
 
@@ -117,7 +117,11 @@ export default function ProfileEdit() {
 
   async function getUser() {
     const { sub } = JSON.parse(localStorage.getItem("userData"));
-    const users = await getRegisters(db, "usersCollection", where("sub", "==", sub));
+    const usersCollectionRef = collection(db, "usersCollection");
+
+    const quertySnapshot = query(usersCollectionRef, where("sub", "==", sub));
+
+    const users = quertySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
     console.log("users:", users);
     const user = users[0];
     return user;
