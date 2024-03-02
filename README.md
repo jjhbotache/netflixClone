@@ -1,44 +1,44 @@
 # Netflix Clone ![Netflix](https://img.shields.io/badge/Netflix-E50914?style=for-the-badge&logo=netflix&logoColor=white)
 
-Este proyecto es un **clon** de Netflix que utiliza **Cognito de AWS** para permitir el registro y el inicio de sesión de los usuarios (tambien permite inicio y registro con google). Los usuarios pueden crear perfiles y cada perfil puede tener su propia lista de favoritos. Además, el proyecto incluye una funcionalidad para comprar una suscripción mediante **PayPal**. El objetivo de este proyecto es recrear la apariencia y funcionalidad básica de Netflix, con algunas funcionalidades adicionales.
+This project is a **clone** of Netflix that uses **AWS Cognito** to allow user registration and login (it also allows login and registration with Google). Users can create profiles and each profile can have its own list of favorites. Additionally, the project includes functionality to purchase a subscription using **PayPal**. The goal of this project is to recreate the appearance and basic functionality of Netflix, with some additional features.
 
 ---
 ### Landing page
-La landing page se hizo idéntica a la [página original de Netflix](https://www.netflix.com/). El botón de **sign in** y botones de **get started** llevan a la página de inicio de sesion
+The landing page is made identical to the [original Netflix page](https://www.netflix.com/). The **sign in** button and **get started** buttons lead to the login page.
 ![text](/readmeImgs/netflixClone_landingPage.gif)
 
 ---
-### Inicio de sesion
-El inicio de sesión se hace mediante el servicio de **Cognito de AWS**. Adicionalmente, se puede iniciar sesión con **google**.
+### Login
+Login is done using the **AWS Cognito** service. Additionally, users can log in with **Google**.
 ![text](/readmeImgs/netflixClone_login.gif)
 
 ---
-### Perfiles
-Una vez que el usuario se ha registrado e iniciado sesión, puede ver y gestionar sus perfiles. Cada perfil tiene su propia lista de favoritos.
+### Profiles
+Once the user has registered and logged in, they can view and manage their profiles. Each profile has its own list of favorites.
 ![text](/readmeImgs/netflixClone_profiles.gif)
 
 ---
-### Página principal y lista
-La página principal muestra todas las películas y series disponibles en Netflix. El usuario las puede agregar a su lista.
+### Main Page and List
+The main page displays all the movies and series available on Netflix. Users can add them to their list.
 ![text](/readmeImgs/netflixClone_mainPage.gif)
 
 ---
-### Página de simulacion de serie/pelicula
-Cuando el usuario hace clic en una película o serie, se muestra una página que simula ver una serie o pelicula. Esta página mostrará una alerta si no tienes un plan.
+### Series/Movie Simulation Page
+When the user clicks on a movie or series, a page is displayed that simulates watching a series or movie. This page will display an alert if you don't have a plan.
 ![text](/readmeImgs/netflixClone_watchsSerie.gif)
 
 ---
-### Página de pago
-El usuario puede comprar una suscripción a Netflix mediante **PayPal**. Cuando se completa la compra, se muestra un mensaje de confirmación y se actualiza el estado del usuario.
+### Payment Page
+The user can purchase a subscription to Netflix using **PayPal**. When the purchase is completed, a confirmation message is displayed and the user's status is updated.
 ![text](/readmeImgs/netflixClone_paymentProcess.gif)
 
 
-## Tecnologías utilizadas
+## Technologies Used
 
 - JavaScript
 - React
 - Firebase
-- PayPal (para la funcionalidad de pago)
+- PayPal (for payment functionality)
 - react-router-dom
 - Styled components
 
@@ -55,26 +55,26 @@ El usuario puede comprar una suscripción a Netflix mediante **PayPal**. Cuando 
 
 ![Google](https://img.shields.io/badge/google-4285F4?style=for-the-badge&logo=google&logoColor=white)
 
-## Estructura del proyecto
+## Project Structure
 
-El proyecto se divide en varias carpetas principales:
+The project is divided into several main folders:
 
-- `src/components`: Aquí es donde se encuentran todos los componentes de React utilizados en el proyecto. Los componentes se componen de dos archivos: uno con el componente en si, y otro con los componentes estilizados.
+- `src/components`: This is where all the React components used in the project are located. Components consist of two files: one with the component itself, and another with the styled components.
 
-- `src/functions`: Aquí es donde se encuentran todas las funciones auxiliares, incluyendo las funciones de Firebase y PayPal. Estas funciones se dividen en subcarpetas como firebaseFunctions, paypalFunctions y simpleHelpers.
+- `src/functions`: This is where all the helper functions are located, including Firebase and PayPal functions. These functions are divided into subfolders such as firebaseFunctions, paypalFunctions, and simpleHelpers.
 
-- `src/pages`: Aquí es donde se encuentran todas las páginas de la aplicación. Cada página tiene su propia carpeta.
+- `src/pages`: This is where all the application pages are located. Each page has its own folder.
 
-- `src/router`: Aquí es donde se maneja el enrutamiento de la aplicación.
+- `src/router`: This is where the application routing is handled.
 
-- `src/assets`: Esta carpeta contiene todos los recursos estáticos utilizados en el proyecto, como imágenes y logos.
+- `src/assets`: This folder contains all the static resources used in the project, such as images and logos.
 
-- `src/configs`: Aquí se encuentran los archivos de configuración, como la configuración de Firebase.
+- `src/configs`: This is where configuration files are located, such as Firebase configuration.
 
-- `src/constants`: Esta carpeta contiene archivos con constantes utilizadas en todo el proyecto.
+- `src/constants`: This folder contains files with constants used throughout the project.
 
-## Cómo ejecutar el proyecto
+## How to Run the Project
 
-1. Clona el repositorio
-2. Instala las dependencias con `npm install`
-3. Ejecuta el proyecto con `npm start`
+1. Clone the repository
+2. Install dependencies with `npm install`
+3. Run the project with `npm start`
