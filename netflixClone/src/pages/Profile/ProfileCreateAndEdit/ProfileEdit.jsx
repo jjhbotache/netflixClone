@@ -77,8 +77,21 @@ export default function ProfileEdit() {
   function deleteProfile(e) {
     // prompt("Are you sure you want to delete this profile? (yes/no)") === "yes" ? deleteProfileFromDB() : alert("Profile not deleted");
     if(!confirm("Are you sure you want to delete this profile?")) return;
-    const docRef = doc(db, "profilesCollection", profileId);
-    deleteDoc(docRef).then(async () => {
+    const profileDocRef = doc(db, "profilesCollection", profileId);
+    const usersCollectionDocRef = doc(db, "usersCollection", profileId);
+    deleteDoc(profileDocRef).then(async () => {
+      
+      updateDoc(
+        doc(db, "usersCollection", profileId),
+        {
+          profiles: profile.profiles.filter(p=> p !== profileId),
+        }
+      )
+      
+
+
+
+
       console.log("Document successfully deleted!");
 
       // once it was deleted, delete from the profiles field of the usersCollection doc
